@@ -33,6 +33,16 @@ ThemeData appTheme({double fontOffset = 0}) {
       foregroundColor: kColorWhite,
     ),
 
+    appBarTheme: AppBarTheme(
+        color: kColorBackground,
+        textTheme: TextTheme(
+          headline6: TextStyle(
+            fontSize: 50.0 + fontOffset,
+            fontWeight: FontWeight.bold,
+            color: kColorSecondary,
+          ),
+        )),
+
     // Define the default TextTheme. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and more.
     textTheme: TextTheme(
@@ -52,7 +62,7 @@ ThemeData appTheme({double fontOffset = 0}) {
       ),
       bodyText1: TextStyle(
         fontSize: 16.0 + fontOffset,
-        color: kColorSecondary,
+        color: kColorSecondaryText,
       ),
       bodyText2: TextStyle(
         fontSize: 14.0 + fontOffset,

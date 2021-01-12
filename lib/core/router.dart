@@ -7,6 +7,10 @@ navigateToPage(BuildContext context, Widget widget) {
   );
 }
 
+navigateToRoute(BuildContext context, String route) {
+  Navigator.pushNamed(context, route);
+}
+
 navigateBackFromPage(BuildContext context) {
   Navigator.pop(context);
 }

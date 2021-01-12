@@ -3,13 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // app colors
-// TODO Change the theme color
 const kColorPrimary = const Color(0xFF009688);
-const kColorSecondary = const Color(0xFF212121);
+const kColorSecondary = const Color(0xFFC3E3E1);
 const kColorSecondaryText = const Color(0xFF8757575);
 const kColorAccent = const Color(0xFFFF9800);
 const kColorBackground = const Color(0xFFFFFFFF);
 const kColorWhite = const Color(0xFFFFFFFFF);
+const kColorWarn = const Color(0xFFFF5733);
+const kColorValid = const Color(0xFF00C853);
 
 MaterialColor generateMaterialColor(Color color) {
   return MaterialColor(color.value, {
