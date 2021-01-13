@@ -1,5 +1,12 @@
+import 'dart:developer';
+
+import 'package:alergo/core/router.dart';
 import 'package:alergo/core/text_style.dart';
+import 'package:alergo/screens/scanner_page/scanner_page.dart';
+import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/customs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -7,21 +14,33 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Alergo'),
-      ),
       body: Center(
         child: Container(
-          child: Text(
-            'a sample text',
-            style: headline3(context),
+          decoration: dropShadow(
+            color: kColorSecondary,
+            shape: BoxShape.circle,
+          ),
+          alignment: Alignment.center,
+          child: ClipOval(
+            child: Material(
+              color: kColorSecondary,
+              child: InkWell(
+                splashColor: kColorPrimary,
+                onTap: () => navigateToPage(context, ScannerPage()),
+                child: AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(42.0),
+                    child: SvgPicture.asset(
+                      'assets/qrcodescan.svg',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.star),
-        onPressed: () => {},
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:alergo/screens/home_page.dart';
+import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 
