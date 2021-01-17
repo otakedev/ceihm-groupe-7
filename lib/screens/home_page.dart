@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
             RaisedButton(
               onPressed: () => navigateToPage(context, ChooseDietPage()),
               child: Text("Choix d'un régime"),
-            )
+            ),
           ],
         ),
       ),

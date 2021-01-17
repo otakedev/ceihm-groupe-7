@@ -5,23 +5,21 @@ import 'package:flutter/widgets.dart';
 // Internal
 import 'package:alergo/core/router.dart';
 import 'package:alergo/components/item_block.dart';
-import 'package:alergo/mocks/diet_items_mock.dart';
-import 'package:alergo/models/diet_item_model.dart';
 
 // Pages
-import '../choose_forbidden_products_page/choose_forbidden_products_page.dart';
+import '../choose_unliked_products_page/choose_unliked_products_page.dart';
 
-class ChooseDietPage extends StatefulWidget {
-  const ChooseDietPage({Key key}) : super(key: key);
-
+class ChooseForbiddenProductPage extends StatefulWidget {
   @override
-  _ChooseDietPageState createState() => _ChooseDietPageState();
+  _ChooseForbiddenProductPageState createState() =>
+      _ChooseForbiddenProductPageState();
 }
 
-class _ChooseDietPageState extends State<ChooseDietPage> {
+class _ChooseForbiddenProductPageState
+    extends State<ChooseForbiddenProductPage> {
   List<int> selectedIndexes = [];
-  List<DietItemModel> diets =
-      DIET_ITEMS_MOCK.map((e) => new DietItemModel.fromMap(e)).toList();
+  // List<ProductItemModel> diets =
+  //     PRODUCT_ITEMS_MOCK.map((e) => new ProductItemModel.fromMap(e)).toList(); // TODO
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +38,11 @@ class _ChooseDietPageState extends State<ChooseDietPage> {
                           MediaQuery.of(context).size.height * 0.04,
                     ),
                     shrinkWrap: true,
-                    itemCount: diets.length,
+                    itemCount: 3,
                     itemBuilder: (BuildContext context, int index) {
                       return ItemBlock(
-                        itemName: diets[index].itemName,
-                        assetPath: diets[index].assetPath,
+                        itemName: "product",
+                        assetPath: "assets/diets/vegan.jpg",
                         index: index,
                         isSelected: selectedIndexes.contains(index),
                         onSelect: () {
@@ -64,7 +62,7 @@ class _ChooseDietPageState extends State<ChooseDietPage> {
                     }),
                 RaisedButton(
                   onPressed: () =>
-                      navigateToPage(context, ChooseForbiddenProductPage()),
+                      navigateToPage(context, ChooseUnlikedProductsPage()),
                   child: Text("Suivant"),
                 ),
               ],
