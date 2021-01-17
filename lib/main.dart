@@ -1,3 +1,4 @@
+import 'package:alergo/screens/display_product_page/display_product.dart';
 import 'package:alergo/screens/home_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/theme/style.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
+        '/display': (context) => DisplayProduct(),
       },
     );
   }
