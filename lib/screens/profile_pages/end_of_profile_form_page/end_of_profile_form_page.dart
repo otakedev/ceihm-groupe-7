@@ -1,5 +1,4 @@
 // Flutter
-import 'package:alergo/screens/profile_pages/choose_unliked_products_page/choose_unliked_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,6 +7,7 @@ import 'package:alergo/core/router.dart';
 
 // Pages
 import '../../home_page.dart';
+import 'package:alergo/screens/profile_pages/choose_unliked_products_page/choose_unliked_products_page.dart';
 
 class EndOfProfileFormPage extends StatelessWidget {
   const EndOfProfileFormPage({Key key}) : super(key: key);

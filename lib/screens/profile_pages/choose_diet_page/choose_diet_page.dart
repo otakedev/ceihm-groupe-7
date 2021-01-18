@@ -1,9 +1,13 @@
+// Flutter
 import 'dart:developer';
-
-import 'package:alergo/core/router.dart';
-import 'package:alergo/screens/profile_pages/choose_forbidden_products_page/choose_forbidden_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+// Internal
+import 'package:alergo/core/router.dart';
+
+// Pages
+import 'package:alergo/screens/profile_pages/choose_forbidden_products_page/choose_forbidden_products_page.dart';
 
 class ChooseDietPage extends StatelessWidget {
   const ChooseDietPage({Key key}) : super(key: key);

@@ -1,7 +1,5 @@
 // Flutter
 import 'dart:developer';
-
-import 'package:alergo/screens/profile_pages/choose_forbidden_products_page/choose_forbidden_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:alergo/core/router.dart';
 
 // Pages
+import 'package:alergo/screens/profile_pages/choose_forbidden_products_page/choose_forbidden_products_page.dart';
 import '../end_of_profile_form_page/end_of_profile_form_page.dart';
 
 class ChooseUnlikedProductsPage extends StatelessWidget {
