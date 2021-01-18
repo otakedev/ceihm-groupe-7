@@ -11,14 +11,8 @@ import 'package:alergo/core/router.dart';
 // Pages
 import '../end_of_profile_form_page/end_of_profile_form_page.dart';
 
-class ChooseUnlikedProductsPage extends StatefulWidget {
-  @override
-  _ChooseUnlikedProductsPageState createState() =>
-      _ChooseUnlikedProductsPageState();
-}
-
-class _ChooseUnlikedProductsPageState extends State<ChooseUnlikedProductsPage> {
-  List<int> selectedIndexes = [];
+class ChooseUnlikedProductsPage extends StatelessWidget {
+  const ChooseUnlikedProductsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

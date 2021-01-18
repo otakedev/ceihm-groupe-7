@@ -9,13 +9,8 @@ import 'package:alergo/core/router.dart';
 // Pages
 import '../../home_page.dart';
 
-class EndOfProfileFormPage extends StatefulWidget {
-  @override
-  _EndOfProfileFormPageState createState() => _EndOfProfileFormPageState();
-}
-
-class _EndOfProfileFormPageState extends State<EndOfProfileFormPage> {
-  List<int> selectedIndexes = [];
+class EndOfProfileFormPage extends StatelessWidget {
+  const EndOfProfileFormPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

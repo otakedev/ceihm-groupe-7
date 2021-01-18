@@ -11,15 +11,8 @@ import 'package:alergo/core/router.dart';
 import '../choose_unliked_products_page/choose_unliked_products_page.dart';
 import 'package:alergo/screens/profile_pages/choose_diet_page/choose_diet_page.dart';
 
-class ChooseForbiddenProductsPage extends StatefulWidget {
-  @override
-  _ChooseForbiddenProductsPageState createState() =>
-      _ChooseForbiddenProductsPageState();
-}
-
-class _ChooseForbiddenProductsPageState
-    extends State<ChooseForbiddenProductsPage> {
-  List<int> selectedIndexes = [];
+class ChooseForbiddenProductsPage extends StatelessWidget {
+  const ChooseForbiddenProductsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
