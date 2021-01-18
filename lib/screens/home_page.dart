@@ -1,14 +1,11 @@
-import 'dart:developer';
-
 import 'package:alergo/core/router.dart';
-import 'package:alergo/core/text_style.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/customs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'choose_diet_page/choose_diet_page.dart';
+import 'profile_pages/choose_diet_page/choose_diet_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -48,8 +45,8 @@ class HomePage extends StatelessWidget {
             ),
             RaisedButton(
               onPressed: () => navigateToPage(context, ChooseDietPage()),
-              child: Text("Choix d'un régime"),
-            )
+              child: Text("Définir votre profil"),
+            ),
           ],
         ),
       ),
