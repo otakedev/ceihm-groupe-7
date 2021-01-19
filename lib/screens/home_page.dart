@@ -5,9 +5,9 @@ import 'package:alergo/theme/customs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'profile_pages/choose_diet_page/choose_diet_page.dart';
-
 class HomePage extends StatelessWidget {
+  static const routeName = '/home';
+
   const HomePage({Key key}) : super(key: key);
 
   @override
@@ -19,15 +19,15 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               decoration: dropShadow(
-                color: kColorSecondary,
+                color: colorSecondary,
                 shape: BoxShape.circle,
               ),
               alignment: Alignment.center,
               child: ClipOval(
                 child: Material(
-                  color: kColorSecondary,
+                  color: colorSecondary,
                   child: InkWell(
-                    splashColor: kColorPrimary,
+                    splashColor: colorPrimary,
                     onTap: () => navigateToPage(context, ScannerPage()),
                     child: AspectRatio(
                       aspectRatio: 1 / 1,
@@ -42,10 +42,6 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            RaisedButton(
-              onPressed: () => navigateToPage(context, ChooseDietPage()),
-              child: Text("Définir votre profil"),
             ),
           ],
         ),

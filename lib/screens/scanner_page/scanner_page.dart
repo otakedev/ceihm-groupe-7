@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:alergo/core/router.dart';
-import 'package:alergo/screens/scanner_page/qrcode_scanner.dart';
+import 'package:alergo/models/product_model.dart';
+import 'package:alergo/screens/product_page/product_page.dart';
+import 'package:alergo/screens/scanner_page/components/qrcode_scanner.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +15,13 @@ class ScannerPage extends StatelessWidget {
     return Container(
       child: Scaffold(
         body: QRCodeScanner(
-          onScan: (scanData) => {
-            log('Barcode Type: ${describeEnum(scanData.format)}   Data: ${scanData.code}'),
-            // navigate back for the moment
-            navigateBackFromPage(context),
-          },
+          onScan: (scanData) => navigateToRoute(
+            context,
+            ProductPage.routeName,
+            replace: true,
+            arguments: ProductModel.fromMock()
+                .firstWhere((e) => scanData.code == e.id),
+          ),
         ),
       ),
     );

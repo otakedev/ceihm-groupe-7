@@ -25,7 +25,7 @@ class EndOfProfileFormPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           RaisedButton(
-            onPressed: () => navigateToPage(context, HomePage()),
+            onPressed: () => navigateToRoute(context, '/home'),
             child: Text("Parfait !"),
           ),
         ]),

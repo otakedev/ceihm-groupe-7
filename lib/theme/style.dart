@@ -13,10 +13,10 @@ ThemeData appTheme({double fontOffset = 0}) {
   return ThemeData(
     // Define the default brightness and colors.
     brightness: Brightness.light,
-    primarySwatch: generateMaterialColor(kColorPrimary),
-    accentColor: kColorAccent,
+    primarySwatch: generateMaterialColor(colorPrimary),
+    accentColor: colorAccent,
     // scaffoldBackgroundColor: kColorBackground,
-    scaffoldBackgroundColor: kColorBackground,
+    scaffoldBackgroundColor: colorBackground,
 
     // Define the default font family.
     fontFamily: 'ArialRounded',
@@ -29,19 +29,19 @@ ThemeData appTheme({double fontOffset = 0}) {
     ),
 
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: kColorAccent,
-      foregroundColor: kColorWhite,
+      backgroundColor: colorAccent,
+      foregroundColor: colorWhite,
     ),
 
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      iconTheme: IconThemeData(color: kColorPrimary),
-      color: kColorBackground,
+      iconTheme: IconThemeData(color: colorPrimary),
+      color: colorBackground,
       textTheme: TextTheme(
         headline6: TextStyle(
           fontSize: 25.0 + fontOffset,
           fontWeight: FontWeight.bold,
-          color: kColorSecondary,
+          color: colorSecondary,
         ),
       ),
     ),
@@ -52,24 +52,24 @@ ThemeData appTheme({double fontOffset = 0}) {
       headline1: TextStyle(
         fontSize: 72.0 + fontOffset,
         fontWeight: FontWeight.bold,
-        color: kColorSecondary,
+        color: colorSecondary,
       ),
       headline5: TextStyle(
         fontSize: 24.0 + fontOffset,
         fontWeight: FontWeight.bold,
-        color: kColorSecondary,
+        color: colorSecondary,
       ),
       headline6: TextStyle(
         fontSize: 20.0 + fontOffset,
-        color: kColorSecondary,
+        color: colorSecondary,
       ),
       bodyText1: TextStyle(
         fontSize: 16.0 + fontOffset,
-        color: kColorSecondaryText,
+        color: colorSecondaryText,
       ),
       bodyText2: TextStyle(
         fontSize: 14.0 + fontOffset,
-        color: kColorSecondaryText,
+        color: colorSecondaryText,
       ),
     ),
   );
