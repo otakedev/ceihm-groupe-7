@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // app colors
-const kColorPrimary = const Color(0xFF009688);
-const kColorSecondary = const Color(0xFFC3E3E1);
-const kColorSecondaryText = const Color(0xFF8757575);
-const kColorAccent = const Color(0xFFFF9800);
-const kColorBackground = const Color(0xFFFFFFFF);
-const kColorWhite = const Color(0xFFFFFFFFF);
-const kColorWarn = const Color(0xFFFF5733);
-const kColorValid = const Color(0xFF00C853);
+const colorPrimary = const Color(0xFF009688);
+const colorSecondary = const Color(0xFFC3E3E1);
+const colorSecondaryText = const Color(0xFF8757575);
+const colorAccent = const Color(0xFFFF9800);
+const colorBackground = const Color(0xFFFFFFFF);
+const colorWhite = const Color(0xFFFFFFFFF);
+const colorWarn = const Color(0xFFFF5733);
+const colorValid = const Color(0xFF00C853);
 
 MaterialColor generateMaterialColor(Color color) {
   return MaterialColor(color.value, {

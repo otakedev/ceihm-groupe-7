@@ -1,5 +1,6 @@
-import 'package:alergo/screens/display_product_page/display_product.dart';
+import 'package:alergo/core/router.dart';
 import 'package:alergo/screens/home_page.dart';
+import 'package:alergo/screens/product_page/product_page.dart';
 import 'package:alergo/screens/start_page/start_page.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Alergo Demo',
       theme: appTheme(),
-      initialRoute: '/start',
+      initialRoute: StartPage.routeName,
       routes: {
-        '/home': (context) => HomePage(),
-        '/start': (context) => StartPage(),
-        '/display': (context) => DisplayProduct(),
+        HomePage.routeName: (context) => HomePage(),
+        StartPage.routeName: (context) => StartPage(),
+        ProductPage.routeName: (context) => ProductPage(),
       },
     );
   }

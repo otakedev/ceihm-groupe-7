@@ -1,14 +1,20 @@
 const PRODUCTS_MOCK = [
   {
+    "id": "1",
     "name": "Cookie",
     "description": "Une Description",
-    "urlImage":
-        "https://assets.stickpng.com/images/580b57fbd9996e24bc43c0fc.png",
+    "urlImage": "https://otakedev.com/share/images/brand/cookie.png",
   },
   {
+    "id": "2",
     "name": "Coca Cola",
     "description": "Une Description",
-    "urlImage":
-        "https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43c0de.png"
+    "urlImage": "https://otakedev.com/share/images/brand/coca.png"
+  },
+  {
+    "id": "3",
+    "name": "Kinder Bueno",
+    "description": "Une Description",
+    "urlImage": "https://otakedev.com/share/images/brand/bueno.png"
   },
 ];

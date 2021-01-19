@@ -1,14 +1,11 @@
-// Flutter
+import 'package:alergo/screens/home_page.dart';
 import 'package:flutter/material.dart';
-
-// Internal
 import 'package:alergo/core/router.dart';
-
-// Pages
 import 'package:alergo/screens/profile_pages/choose_diet_page/choose_diet_page.dart';
-import '../home_page.dart';
 
 class StartPage extends StatelessWidget {
+  static final routeName = '/start';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +21,7 @@ class StartPage extends StatelessWidget {
               child: Text("Définir votre profil"),
             ),
             RaisedButton(
-              onPressed: () => navigateToPage(context, HomePage()),
+              onPressed: () => navigateToRoute(context, HomePage.routeName),
               child: Text("Scanner"),
             ),
           ],
