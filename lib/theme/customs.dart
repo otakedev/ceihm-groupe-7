@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 dropShadow({
   Color color = colorWhite,
-  BoxShape shape,
+  BoxShape shape = BoxShape.rectangle,
 }) =>
     BoxDecoration(
       color: color,
-      shape: shape ?? null,
-      borderRadius: shape == null
+      shape: shape,
+      borderRadius: shape == BoxShape.rectangle
           ? BorderRadius.all(
               Radius.circular(10),
             )
