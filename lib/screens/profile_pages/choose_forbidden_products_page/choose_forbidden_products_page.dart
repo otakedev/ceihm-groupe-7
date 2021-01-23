@@ -1,5 +1,8 @@
 // Flutter
 import 'dart:developer';
+import 'package:alergo/components/item_block.dart';
+import 'package:alergo/mocks/profil_items_mock.dart';
+import 'package:alergo/models/profile_item_block_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,32 +13,53 @@ import 'package:alergo/core/router.dart';
 import '../choose_unliked_products_page/choose_unliked_products_page.dart';
 import 'package:alergo/screens/profile_pages/choose_diet_page/choose_diet_page.dart';
 
+import '../profile_page.dart';
+
 class ChooseForbiddenProductsPage extends StatelessWidget {
-  const ChooseForbiddenProductsPage({Key key}) : super(key: key);
+  final VoidCallback goToNextPage;
+  final VoidCallback goToPreviousPage;
+  const ChooseForbiddenProductsPage(
+      {Key key, @required this.goToNextPage, @required this.goToPreviousPage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<ProfileItemBlockModel> diets = FORBIDDEN_ITEMS_MOCK
+        .map((e) => ProfileItemBlockModel.fromMap(e))
+        .toList();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => log("cancel pressed"),
-          icon: Icon(Icons.cancel),
+      body: Container(
+        child: Padding(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.09),
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: MediaQuery.of(context).size.width * 0.09,
+                mainAxisSpacing: MediaQuery.of(context).size.height * 0.04,
+              ),
+              shrinkWrap: true,
+              itemCount: diets.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ItemBlock(
+                  itemName: diets[index].itemName,
+                  assetPath: diets[index].assetPath,
+                  index: index,
+                  type: ProfileType.FORBIDDEN_PRODUCT,
+                );
+              }),
         ),
-        title: Text("Je ne peux pas"),
       ),
-      body: Container(child: Text('the list goes here')),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
             FlatButton(
-              onPressed: () => navigateToPage(context, ChooseDietPage()),
+              onPressed: () => goToPreviousPage(),
               child: Text("< Choix du régime"),
             ),
             Spacer(),
             RaisedButton(
-              onPressed: () =>
-                  navigateToPage(context, ChooseUnlikedProductsPage()),
+              onPressed: () => goToNextPage(),
               child: Text("Suivant"),
             ),
           ],

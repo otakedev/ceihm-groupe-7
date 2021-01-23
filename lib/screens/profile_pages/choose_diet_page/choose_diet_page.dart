@@ -1,57 +1,55 @@
-// Flutter
-import 'dart:developer';
-import 'package:alergo/components/bottom_drawer.dart';
-import 'package:alergo/components/dismissible_list_view.dart';
-import 'package:alergo/models/profile_form_model.dart';
-import 'package:alergo/screens/profile_pages/components/profile_tile_list.dart';
-import 'package:alergo/theme/colors.dart';
+import 'package:alergo/components/item_block.dart';
+import 'package:alergo/mocks/profil_items_mock.dart';
+import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/screens/profile_pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-// Internal
-import 'package:alergo/core/router.dart';
-
-// Pages
-import 'package:alergo/screens/profile_pages/choose_forbidden_products_page/choose_forbidden_products_page.dart';
-
 class ChooseDietPage extends StatelessWidget {
-  const ChooseDietPage({Key key}) : super(key: key);
+  final VoidCallback goToNextPage;
+  const ChooseDietPage({Key key, @required this.goToNextPage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<ProfileItemBlockModel> diets = FORBIDDEN_ITEMS_MOCK
+        .map((e) => new ProfileItemBlockModel.fromMap(e))
+        .toList();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => log("cancel pressed"),
-          icon: Icon(Icons.cancel),
+      body: Container(
+        child: Padding(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.09),
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: MediaQuery.of(context).size.width * 0.09,
+                mainAxisSpacing: MediaQuery.of(context).size.height * 0.04,
+              ),
+              shrinkWrap: true,
+              itemCount: diets.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ItemBlock(
+                  itemName: diets[index].itemName,
+                  assetPath: diets[index].assetPath,
+                  index: index,
+                  type: ProfileType.DIET,
+                );
+              }),
         ),
-        title: Text("Choix du régime"),
       ),
-      body: Stack(
-        children: [
-          Container(child: Text('the list goes here')),
-          BottomDrawer(
-            actionPosition: ActionPosition.top,
-            rightAction: _buildNextButton(context),
-            menuWidgets: DismissibleListView(
-              onWidgetRemoved: (index) => log('$index removed'),
-              onWidgetUndo: (index) => log('$index undo'),
-              widgets: [
-                for (var i in ProfileFormModel.fromMock())
-                  ProfileTileList(label: i.label, imageUrl: i.imageUrl)
-              ],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Spacer(),
+            RaisedButton(
+              // The diet page does not have a "Précédent" button
+              onPressed: () => goToNextPage(),
+              child: Text("Suivant"),
             ),
-          )
-        ],
+          ],
+        ),
       ),
-    );
-  }
-
-  Widget _buildNextButton(BuildContext context) {
-    return RaisedButton(
-      // The diet page does not have a "Précédent" button
-      onPressed: () => navigateToPage(context, ChooseForbiddenProductsPage()),
-      child: Text("Suivant"),
     );
   }
 }
