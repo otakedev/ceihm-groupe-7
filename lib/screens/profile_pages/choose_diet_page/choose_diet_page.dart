@@ -18,23 +18,40 @@ class ChooseDietPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Padding(
-          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.09),
-          child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: MediaQuery.of(context).size.width * 0.09,
-                mainAxisSpacing: MediaQuery.of(context).size.height * 0.04,
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05)
+              .copyWith(bottom: 0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "Je mange",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              shrinkWrap: true,
-              itemCount: diets.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ItemBlock(
-                  itemName: diets[index].itemName,
-                  assetPath: diets[index].assetPath,
-                  index: index,
-                  type: ProfileType.DIET,
-                );
-              }),
+              Flexible(
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing:
+                          MediaQuery.of(context).size.width * 0.05,
+                      mainAxisSpacing:
+                          MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    shrinkWrap: true,
+                    itemCount: diets.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ItemBlock(
+                        itemName: diets[index].itemName,
+                        assetPath: diets[index].assetPath,
+                        index: index,
+                        type: ProfileType.DIET,
+                      );
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

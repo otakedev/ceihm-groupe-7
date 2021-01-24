@@ -27,32 +27,42 @@ class ChooseUnlikedProductsPage extends StatelessWidget {
         .map((e) => new ProfileItemBlockModel.fromMap(e))
         .toList();
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () => log("cancel pressed"),
-      //     icon: Icon(Icons.cancel),
-      //   ),
-      //   title: Text("Je n'aime pas"),
-      // ),
       body: Container(
         child: Padding(
-          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.09),
-          child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: MediaQuery.of(context).size.width * 0.09,
-                mainAxisSpacing: MediaQuery.of(context).size.height * 0.04,
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05)
+              .copyWith(bottom: 0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "Je n'aime pas",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              shrinkWrap: true,
-              itemCount: diets.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ItemBlock(
-                  itemName: diets[index].itemName,
-                  assetPath: diets[index].assetPath,
-                  index: index,
-                  type: ProfileType.UNLIKED_PRODUCT,
-                );
-              }),
+              Flexible(
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing:
+                          MediaQuery.of(context).size.width * 0.05,
+                      mainAxisSpacing:
+                          MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    shrinkWrap: true,
+                    itemCount: diets.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ItemBlock(
+                        itemName: diets[index].itemName,
+                        assetPath: diets[index].assetPath,
+                        index: index,
+                        type: ProfileType.DIET,
+                      );
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
