@@ -19,79 +19,64 @@ class HomePage extends StatelessWidget {
   Future<List<ProductModel>> search(String search) async {
     return ProductModel.fromMock()
         .where((product) =>
-            product.name.toUpperCase().contains(search.toUpperCase()) ||
-            product.description.toUpperCase().contains(search.toUpperCase()))
+            product.name.toUpperCase().contains(search.toUpperCase()))
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Center(
-        child: SearchBar<ProductModel>(
-          onSearch: search,
-          onItemFound: (ProductModel product, int index) {
-            return ListTile(
-              title: Text(product.name),
-              subtitle: Text(product.description),
-              onTap: () {
-                navigateToRoute(
-                  context,
-                  ProductPage.routeName,
-                  replace: true,
-                  arguments: product,
-                );
-              },
-            );
-          },
-          minimumChars: 1,
-        ),
+        child: Stack(children: [
+          Container(
+            decoration: dropShadow(
+              color: colorSecondary,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: ClipOval(
+              child: Material(
+                color: colorSecondary,
+                child: InkWell(
+                  splashColor: colorPrimary,
+                  onTap: () => navigateToPage(context, ScannerPage()),
+                  child: AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(42.0),
+                      child: SvgPicture.asset(
+                        'assets/qrcodescan.svg',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SearchBar<ProductModel>(
+            hintText: "Rechercher",
+            searchBarPadding: EdgeInsets.all(50).copyWith(top: 100),
+            minimumChars: 1,
+            onSearch: search,
+            onItemFound: (ProductModel product, int index) {
+              return ListTile(
+                title: Text(product.name),
+                subtitle: Text(product.description),
+                onTap: () {
+                  navigateToRoute(
+                    context,
+                    ProductPage.routeName,
+                    replace: true,
+                    arguments: product,
+                  );
+                },
+              );
+            },
+          ),
+        ]),
       ),
-
-      // child: Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Container(
-      //       height: 100,
-      //       child: SearchBar<ProductModel>(
-      //         onSearch: search,
-      //         onItemFound: (ProductModel product, int index) {
-      //           return ListTile(
-      //             title: Text(product.name),
-      //             subtitle: Text(product.description),
-      //           );
-      //         },
-      //       ),
-      //     ),
-      //     Container(
-      //       decoration: dropShadow(
-      //         color: colorSecondary,
-      //         shape: BoxShape.circle,
-      //       ),
-      //       alignment: Alignment.center,
-      //       child: ClipOval(
-      //         child: Material(
-      //           color: colorSecondary,
-      //           child: InkWell(
-      //             splashColor: colorPrimary,
-      //             onTap: () => navigateToPage(context, ScannerPage()),
-      //             child: AspectRatio(
-      //               aspectRatio: 1 / 1,
-      //               child: Padding(
-      //                 padding: const EdgeInsets.all(42.0),
-      //                 child: SvgPicture.asset(
-      //                   'assets/qrcodescan.svg',
-      //                   fit: BoxFit.contain,
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      // ),
     );
   }
 }
