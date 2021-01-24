@@ -3,17 +3,22 @@ import 'package:alergo/models/product_model.dart';
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProductDetails extends StatelessWidget {
   const ProductDetails({
     this.product,
     this.color = colorPrimary,
+    this.icon,
+    this.compatibilityTitle,
     Key key,
   })  : assert(product != null),
         super(key: key);
 
   final ProductModel product;
   final Color color;
+  final IconData icon;
+  final String compatibilityTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -63,4 +68,3 @@ class ProductDetails extends StatelessWidget {
     );
   }
 }
-

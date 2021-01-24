@@ -10,9 +10,21 @@ class ProductPage extends StatelessWidget {
   static const routeName = '/product';
 
   static const productValidityTest = {
-    "1": colorValid,
-    "2": colorWarn,
-    "3": colorPrimary,
+    "1": {
+      "color": colorValid,
+      "text": "Compatible",
+      "icon": Icons.check_circle_sharp
+    },
+    "2": {
+      "color": colorWarn,
+      "text": "Incompatible",
+      "icon": Icons.highlight_off_rounded
+    },
+    "3": {
+      "color": colorAccent,
+      "text": "Attention",
+      "icon": Icons.warning_rounded
+    },
   };
 
   const ProductPage({Key key}) : super(key: key);
@@ -21,12 +33,16 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // POUR LES PHASES DE DEV , NE PAS SUPPRIMER
     // final ProductModel product =
-    //     ProductModel.fromMock().firstWhere((e) => "2" == e.id);
+    //     ProductModel.fromMock().firstWhere((e) => "1" == e.id);
     final ProductModel product = ModalRoute.of(context).settings.arguments;
-    final Color color = productValidityTest[product.id] ?? colorPrimary;
+    final Color color =
+        productValidityTest[product.id]["color"] ?? colorPrimary;
+    final IconData icon = productValidityTest[product.id]["icon"];
+    final String text = productValidityTest[product.id]["text"];
 
     return Scaffold(
-      body: ProductDetails(product: product, color: color),
+      body: ProductDetails(
+          product: product, color: color, icon: icon, compatibilityTitle: text),
       floatingActionButton: FloatingActionButton(
         child: SvgPicture.asset(
           'assets/qrcodescan.svg',
