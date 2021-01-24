@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 
-class DietItemModel {
+class ProfileItemBlockModel {
   final String itemName;
   final String assetPath;
 
-  DietItemModel({@required this.itemName, @required this.assetPath})
+  ProfileItemBlockModel({@required this.itemName, @required this.assetPath})
       : assert(itemName != null),
         assert(assetPath != null);
 
-  DietItemModel.fromMap(Map<String, dynamic> json)
+  ProfileItemBlockModel.fromMap(Map<String, dynamic> json)
       : itemName = json['itemName'],
         assetPath = json['assetPath'];
 

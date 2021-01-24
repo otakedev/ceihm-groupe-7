@@ -10,14 +10,13 @@ import '../../home_page.dart';
 import 'package:alergo/screens/profile_pages/choose_unliked_products_page/choose_unliked_products_page.dart';
 
 class EndOfProfileFormPage extends StatelessWidget {
-  const EndOfProfileFormPage({Key key}) : super(key: key);
+  final VoidCallback goToPreviousPage;
+  const EndOfProfileFormPage({Key key, @required this.goToPreviousPage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("ALERGO"),
-      ),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
@@ -35,8 +34,7 @@ class EndOfProfileFormPage extends StatelessWidget {
         child: Row(
           children: [
             FlatButton(
-              onPressed: () =>
-                  navigateToPage(context, ChooseUnlikedProductsPage()),
+              onPressed: () => goToPreviousPage(),
               child: Text("< Je n'aime pas"),
             ),
           ],
