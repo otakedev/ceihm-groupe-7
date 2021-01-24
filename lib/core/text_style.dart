@@ -24,5 +24,13 @@ headline6White(context) =>
     Theme.of(context).textTheme.headline6.apply(color: colorWhite);
 bodyText1White(context) =>
     Theme.of(context).textTheme.bodyText1.apply(color: colorWhite);
+bodyText1Black(context) => Theme.of(context)
+    .textTheme
+    .bodyText1
+    .apply(color: Colors.black.withOpacity(0.75), fontSizeFactor: 1.3);
+bodyText2Black(context) => Theme.of(context)
+    .textTheme
+    .bodyText2
+    .apply(color: Colors.black.withOpacity(0.75), fontSizeFactor: 1.2);
 bodyText2White(context) =>
     Theme.of(context).textTheme.bodyText2.apply(color: colorWhite);

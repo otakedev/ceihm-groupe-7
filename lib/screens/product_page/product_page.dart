@@ -19,6 +19,9 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // POUR LES PHASES DE DEV , NE PAS SUPPRIMER
+    // final ProductModel product =
+    //     ProductModel.fromMock().firstWhere((e) => "2" == e.id);
     final ProductModel product = ModalRoute.of(context).settings.arguments;
     final Color color = productValidityTest[product.id] ?? colorPrimary;
 
