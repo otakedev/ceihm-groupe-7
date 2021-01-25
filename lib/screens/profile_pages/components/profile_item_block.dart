@@ -1,0 +1,95 @@
+import 'dart:ui';
+
+import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/screens/profile_pages/profile_selector_notifier.dart';
+import 'package:alergo/theme/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+
+class ProfileItemBlock extends StatelessWidget {
+  const ProfileItemBlock({
+    Key key,
+    @required this.item,
+    @required this.type,
+  })  : assert(item != null),
+        super(key: key);
+
+  final ProfileItemBlockModel item;
+  final ProfileType type;
+
+  @override
+  Widget build(BuildContext context) {
+    final ProfileSelectorNotifier profileSelectorNotifier =
+        Provider.of<ProfileSelectorNotifier>(context);
+
+    final isSelected = profileSelectorNotifier.isSelected(item, type);
+
+    return InkWell(
+      onTap: isSelected
+          ? () => profileSelectorNotifier.removeElement(item, type)
+          : () => profileSelectorNotifier.addElement(item, type),
+      child: Card(
+        color: isSelected ? colorValid : ThemeData().cardColor,
+        clipBehavior: Clip.antiAlias,
+        elevation: isSelected ? 1 : 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: isSelected
+                  ? Stack(
+                      alignment: AlignmentDirectional.center,
+                      fit: StackFit.expand,
+                      children: [
+                        ColorFiltered(
+                          colorFilter:
+                              ColorFilter.mode(Colors.black, BlendMode.hue),
+                          child: Image.asset(
+                            item.assetPath,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
+                        ClipRRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 0.9, sigmaY: 0.9),
+                            child: Container(
+                              color: Colors.black.withOpacity(0),
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.check_rounded,
+                                color: colorValid,
+                                size: MediaQuery.of(context).size.width * 0.25,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  : Image.asset(
+                      item.assetPath,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                item.itemName,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: isSelected ? Colors.black : Colors.grey),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

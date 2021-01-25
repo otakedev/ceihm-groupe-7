@@ -3,7 +3,6 @@ import 'package:alergo/models/product_model.dart';
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProductDetails extends StatelessWidget {
   const ProductDetails({
