@@ -62,7 +62,47 @@ class ProductDetails extends StatelessWidget {
               topRight: Radius.circular(25.0),
             ),
           ),
-          child: ProductIngredients(product: product, color: color),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(8),
+                constraints: BoxConstraints(minHeight: 50),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  color: color,
+                ),
+                child: Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        height: 50,
+                        child: Center(
+                          child: Text(this.compatibilityTitle,
+                              style: headline4White(
+                                context,
+                              )),
+                        ),
+                      )),
+                      Container(
+                        height: 50,
+                        margin: EdgeInsets.only(right: 6),
+                        child: Center(
+                          child: Icon(
+                            this.icon,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ProductIngredients(product: product, color: color),
+            ],
+          ),
         ),
       ),
     );
