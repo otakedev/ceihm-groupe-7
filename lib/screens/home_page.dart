@@ -62,7 +62,6 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          // ),
           KeyboardVisibilityBuilder(
             builder: (context, child, isKeyboardVisible) {
               if (isKeyboardVisible) {
