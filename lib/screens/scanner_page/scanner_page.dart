@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:alergo/core/router.dart';
 import 'package:alergo/models/product_model.dart';
 import 'package:alergo/screens/product_page/product_page.dart';

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:alergo/core/text_style.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,8 @@ class BottomDrawer extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  final Widget leftAction;
-  final Widget rightAction;
+  final MenuAction leftAction;
+  final MenuAction rightAction;
   final Widget menuWidgets;
   final String drawerOpenedText;
   final String drawerClosedText;
@@ -66,12 +67,8 @@ class _BottomDrawerState extends State<BottomDrawer>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        body: LayoutBuilder(
-          builder: _buildStack,
-        ),
-      ),
+    return LayoutBuilder(
+      builder: _buildStack,
     );
   }
 
@@ -92,9 +89,10 @@ class _BottomDrawerState extends State<BottomDrawer>
 
     return Stack(
       children: [
-        GestureDetector(
-          onTap: () => _drawerController.reverse(),
-        ),
+        // Removed for now because if takes the whole screen
+        // GestureDetector(
+        //   onTap: () => _drawerController.reverse(),
+        // ),
         PositionedTransition(
           rect: drawerAnimation,
           child: Container(
@@ -139,6 +137,9 @@ class _BottomDrawerState extends State<BottomDrawer>
   }
 
   Widget _buildActions(double drawerMarge, Animation<double> iconAnimation) {
+    final _leftAction = this.widget.leftAction;
+    final _rightAction = this.widget.rightAction;
+
     return Container(
       height: drawerMarge,
       child: IntrinsicWidth(
@@ -146,29 +147,65 @@ class _BottomDrawerState extends State<BottomDrawer>
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(width: 8),
             Expanded(
-              child: this.widget.leftAction ?? const SizedBox(),
-            ),
-            Expanded(
-              child: FlatButton(
-                  onPressed: () => _bottomDrawerOpened
-                      ? _drawerController.reverse()
-                      : _drawerController.forward(),
-                  child: Row(
-                    children: [
-                      Text(
-                        '${_bottomDrawerOpened ? this.widget.drawerOpenedText : this.widget.drawerClosedText}',
-                      ),
-                      RotationTransition(
-                        turns: iconAnimation,
-                        child: Icon(Icons.arrow_drop_down),
+              child: Container(
+                height: drawerMarge - 20,
+                child: _leftAction != null
+                    ? RaisedButton(
+                        color: _leftAction.color,
+                        onPressed: () => {
+                          _drawerController.reverse(),
+                          _leftAction.onAction()
+                        },
+                        child: Text(
+                          _leftAction.text,
+                          textAlign: TextAlign.center,
+                        ),
                       )
-                    ],
-                  )),
+                    : const SizedBox.shrink(),
+              ),
             ),
             Expanded(
-              child: this.widget.rightAction ?? const SizedBox(),
+              child: this.widget.menuWidgets != null
+                  ? FlatButton(
+                      onPressed: () => _bottomDrawerOpened
+                          ? _drawerController.reverse()
+                          : _drawerController.forward(),
+                      child: Row(
+                        children: [
+                          Text(
+                            '${_bottomDrawerOpened ? this.widget.drawerOpenedText : this.widget.drawerClosedText}',
+                            style: TextStyle(fontSize: 11),
+                          ),
+                          RotationTransition(
+                            turns: iconAnimation,
+                            child: Icon(Icons.arrow_drop_down),
+                          )
+                        ],
+                      ),
+                    )
+                  : const SizedBox(),
             ),
+            Expanded(
+              child: Container(
+                height: drawerMarge - 20,
+                child: _rightAction != null
+                    ? RaisedButton(
+                        color: _rightAction.color,
+                        onPressed: () => {
+                          _drawerController.reverse(),
+                          _rightAction.onAction()
+                        },
+                        child: Text(
+                          _rightAction.text,
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ),
+            SizedBox(width: 8),
           ],
         ),
       ),
@@ -180,4 +217,16 @@ class _BottomDrawerState extends State<BottomDrawer>
     _drawerController.dispose();
     super.dispose();
   }
+}
+
+class MenuAction {
+  final String text;
+  final VoidCallback onAction;
+  final Color color;
+
+  MenuAction({
+    @required this.text,
+    @required this.onAction,
+    this.color = colorPrimary,
+  });
 }
