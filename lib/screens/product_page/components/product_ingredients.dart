@@ -52,25 +52,17 @@ class ProductIngredients extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(left: 30, right: 30),
-                          constraints: BoxConstraints(minHeight: 40),
-                          decoration: BoxDecoration(
-                            color: this.color,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 2,
-                                offset:
-                                    Offset(0, 0), // changes position of shadow
-                              ),
-                            ],
+                        PhysicalModel(
+                          elevation: 4,
+                          color: this.color,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          child: Container(
+                            padding: EdgeInsets.only(left: 30, right: 30),
+                            constraints: BoxConstraints(minHeight: 40),
+                            child: Center(
+                                child: Text(product.ingredients[index].quantity,
+                                    style: bodyText2White(context))),
                           ),
-                          child: Center(
-                              child: Text(product.ingredients[index].quantity,
-                                  style: bodyText2White(context))),
                         ),
                         Expanded(
                             child: Center(

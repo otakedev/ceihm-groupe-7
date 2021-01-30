@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:alergo/components/bottom_drawer.dart';
 import 'package:alergo/components/dismissible_list_view.dart';
+import 'package:alergo/core/utils.dart';
 import 'package:alergo/mocks/profil_items_mock.dart';
 import 'package:alergo/models/profile_item_block_model.dart';
 import 'package:alergo/screens/profile_pages/components/profile_final_tab_page.dart';
@@ -25,6 +26,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   PageController _pageController = PageController();
 
+  double _currentStepWidth = 0.0;
+
   final _profileLabels = [
     'Choix du régime',
     'Je ne peux pas',
@@ -43,6 +46,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("MON PROFIL"),
@@ -51,8 +56,19 @@ class _ProfilePageState extends State<ProfilePage> {
         create: (_) => ProfileSelectorNotifier(),
         child: Stack(
           children: [
+            AnimatedContainer(
+              duration: Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn,
+              color: colorPrimary,
+              width: _currentStepWidth,
+              height: 5,
+            ),
             PageView(
-              onPageChanged: (i) => setState(() => _currentPage = i),
+              onPageChanged: (i) => setState(() => {
+                    _currentPage = i,
+                    _currentStepWidth =
+                        screenWidth * remapInterval(_currentPage, 0, 3, 0, 1),
+                  }),
               controller: _pageController,
               children: [
                 ProfileTabPage(
