@@ -16,41 +16,39 @@ class ProfileFinalTabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Icon(
-              Icons.check_circle,
-              color: colorSecondary,
-              size: 200,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(
+            Icons.check_circle,
+            color: colorSecondary,
+            size: 200,
+          ),
+          Text(
+            "Profil Complet",
+            textAlign: TextAlign.center,
+            style: headline4(context),
+          ),
+          RaisedButton(
+            padding: const EdgeInsets.only(
+              top: 12.0,
+              left: 24.0,
+              bottom: 12.0,
+              right: 24.0,
             ),
-            Text(
-              "Profil Complet",
-              textAlign: TextAlign.center,
-              style: headline4(context),
+            onPressed: () => navigateToRoute(context, '/home'),
+            child: Text(
+              "Terminer !",
+              style: headline4White(context),
             ),
-            RaisedButton(
-              padding: const EdgeInsets.only(
-                top: 12.0,
-                left: 24.0,
-                bottom: 12.0,
-                right: 24.0,
-              ),
-              onPressed: () => navigateToRoute(context, '/home'),
-              child: Text(
-                "Terminer !",
-                style: headline4White(context),
-              ),
-            ),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20)
-          ],
-        ),
+          ),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20)
+        ],
       ),
     );
   }
