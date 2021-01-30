@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:alergo/models/profile_item_block_model.dart';
 import 'package:flutter/material.dart';
 

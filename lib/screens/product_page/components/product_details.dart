@@ -2,6 +2,7 @@ import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/product_model.dart';
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -57,8 +58,8 @@ class ProductDetails extends StatelessWidget {
             color: Colors.white,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0),
-              topRight: Radius.circular(25.0),
+              topLeft: Radius.circular(borderRadius),
+              topRight: Radius.circular(borderRadius),
             ),
           ),
           child: Column(
@@ -67,7 +68,7 @@ class ProductDetails extends StatelessWidget {
                 margin: const EdgeInsets.all(8),
                 constraints: BoxConstraints(minHeight: 50),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
                   color: color,
                 ),
                 child: Center(
@@ -78,10 +79,10 @@ class ProductDetails extends StatelessWidget {
                           child: Container(
                         height: 50,
                         child: Center(
-                          child: Text(this.compatibilityTitle,
-                              style: headline4White(
-                                context,
-                              )),
+                          child: Text(
+                            this.compatibilityTitle,
+                            style: headline4White(context),
+                          ),
                         ),
                       )),
                       Container(

@@ -2,6 +2,8 @@ import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+const double borderRadius = 20.0;
+
 double _offset = 0;
 double get offset => _offset;
 set offset(double offset) {
@@ -23,7 +25,7 @@ ThemeData appTheme({double fontOffset = 0}) {
 
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       textTheme: ButtonTextTheme.primary,
     ),
