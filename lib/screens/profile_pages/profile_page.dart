@@ -3,10 +3,11 @@ import 'package:alergo/components/dismissible_list_view.dart';
 import 'package:alergo/core/utils.dart';
 import 'package:alergo/mocks/profil_items_mock.dart';
 import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/screens/profile_pages/components/build_widgets_selection.dart';
 import 'package:alergo/screens/profile_pages/components/profile_final_tab_page.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tab_page.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tile_list.dart';
-import 'package:alergo/screens/profile_pages/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -50,111 +51,82 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text("MON PROFIL"),
       ),
-      body: ChangeNotifierProvider<ProfileSelectorNotifier>(
-        create: (_) => ProfileSelectorNotifier(),
-        child: Stack(
-          children: [
-            AnimatedContainer(
-              duration: Duration(seconds: 1),
-              curve: Curves.fastOutSlowIn,
-              color: colorPrimary,
-              width: _currentStepWidth,
-              height: 5,
-            ),
-            PageView(
-              onPageChanged: (i) => setState(() => {
-                    _currentPage = i,
-                    _currentStepWidth =
-                        screenWidth * remapInterval(_currentPage, 0, 3, 0, 1),
-                  }),
-              controller: _pageController,
-              children: [
-                ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(DIET_ITEMS_MOCK),
-                  label: _profileLabels[0],
-                  pageController: _pageController,
-                  profileType: ProfileType.DIET,
-                ),
-                ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(FORBIDDEN_ITEMS_MOCK),
-                  label: _profileLabels[1],
-                  pageController: _pageController,
-                  profileType: ProfileType.FORBIDDEN_PRODUCT,
-                ),
-                ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(UNLIKED_ITEMS_MOCK),
-                  label: _profileLabels[2],
-                  pageController: _pageController,
-                  profileType: ProfileType.UNLIKED_PRODUCT,
-                ),
-                ProfileFinalTabPage(
-                  text:
-                      "Votre profil est complet. Vous pourez le modifier à tout moment (Icone Profil).",
-                )
-              ],
-            ),
-            Consumer<ProfileSelectorNotifier>(
-              builder: (context, profileSelector, child) => BottomDrawer(
-                drawerClosedText: "Mes Choix",
-                drawerOpenedText: "Fermer",
-                actionPosition: ActionPosition.bottom,
-                rightAction: _currentPage < _profileLabels.length - 1
-                    ? MenuAction(
-                        onAction: () => goToNextPage(),
-                        text: _profileLabels[_currentPage + 1],
-                      )
-                    : null,
-                leftAction: _currentPage >= 1
-                    ? MenuAction(
-                        color: colorWhite,
-                        text: 'précédent',
-                        onAction: () => goToPreviousPage(),
-                      )
-                    : null,
-                menuWidgets: _profileType[_currentPage] != null
-                    ? DismissibleListView(
-                        onWidgetRemoved: (index) =>
-                            profileSelector.removeElementById(
-                          index,
-                          _profileType[_currentPage],
-                        ),
-                        onWidgetUndo: (index) =>
-                            profileSelector.undoLastRemoved(),
-                        widgets: _buildProfileSelection(profileSelector),
-                      )
-                    : null,
+      body: Stack(
+        children: [
+          AnimatedContainer(
+            duration: Duration(seconds: 1),
+            curve: Curves.fastOutSlowIn,
+            color: colorPrimary,
+            width: _currentStepWidth,
+            height: 5,
+          ),
+          PageView(
+            onPageChanged: (i) => setState(() => {
+                  _currentPage = i,
+                  _currentStepWidth =
+                      screenWidth * remapInterval(_currentPage, 0, 3, 0, 1),
+                }),
+            controller: _pageController,
+            children: [
+              ProfileTabPage(
+                items: ProfileItemBlockModel.fromMock(DIET_ITEMS_MOCK),
+                label: _profileLabels[0],
+                profileType: ProfileType.DIET,
               ),
+              ProfileTabPage(
+                items: ProfileItemBlockModel.fromMock(FORBIDDEN_ITEMS_MOCK),
+                label: _profileLabels[1],
+                profileType: ProfileType.FORBIDDEN_PRODUCT,
+              ),
+              ProfileTabPage(
+                items: ProfileItemBlockModel.fromMock(UNLIKED_ITEMS_MOCK),
+                label: _profileLabels[2],
+                profileType: ProfileType.UNLIKED_PRODUCT,
+              ),
+              ProfileFinalTabPage(
+                text:
+                    "Votre profil est complet. Vous pourrez le modifier à tout moment (Icone Profil).",
+              )
+            ],
+          ),
+          Consumer<ProfileSelectorNotifier>(
+            builder: (context, profileSelector, child) => BottomDrawer(
+              drawerClosedText: "Mes Choix",
+              drawerOpenedText: "Fermer",
+              actionPosition: ActionPosition.bottom,
+              rightAction: _currentPage < _profileLabels.length - 1
+                  ? MenuAction(
+                      onAction: () => goToNextPage(),
+                      text: _profileLabels[_currentPage + 1],
+                    )
+                  : null,
+              leftAction: _currentPage >= 1
+                  ? MenuAction(
+                      color: colorWhite,
+                      text: 'précédent',
+                      onAction: () => goToPreviousPage(),
+                    )
+                  : null,
+              menuWidgets: _profileType[_currentPage] != null
+                  ? DismissibleListView(
+                      onWidgetRemoved: (index) =>
+                          profileSelector.removeElementById(
+                        index,
+                        _profileType[_currentPage],
+                      ),
+                      onWidgetUndo: (index) =>
+                          profileSelector.undoLastRemoved(),
+                      widgets: buildProfileSelection(
+                        profileSelector,
+                        _profileType[_currentPage],
+                      ),
+                    )
+                  : null,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
-  }
-
-  List<Widget> _buildProfileSelection(ProfileSelectorNotifier profileSelector) {
-    switch (_profileType[_currentPage]) {
-      case ProfileType.DIET:
-        return getSelectedByType(
-            profileSelector.selectedDiet, ProfileType.DIET);
-      case ProfileType.FORBIDDEN_PRODUCT:
-        return getSelectedByType(profileSelector.selectedForbiddenProduct,
-            ProfileType.FORBIDDEN_PRODUCT);
-      case ProfileType.UNLIKED_PRODUCT:
-        return getSelectedByType(profileSelector.selectedUnlikedProduct,
-            ProfileType.UNLIKED_PRODUCT);
-      default:
-        return const [];
-    }
-  }
-
-  List<Widget> getSelectedByType(
-      List<ProfileItemBlockModel> list, ProfileType type) {
-    List<Widget> widgets = [];
-    for (var i in list)
-      widgets.add(
-        ProfileTileList(label: i.itemName, assetPath: i.assetPath),
-      );
-    return widgets;
   }
 
   Future<void> goToPreviousPage() {

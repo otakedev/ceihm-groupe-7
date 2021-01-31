@@ -48,6 +48,12 @@ ThemeData appTheme({double fontOffset = 0}) {
       ),
     ),
 
+    tabBarTheme: TabBarTheme(
+      labelColor: colorPrimary,
+      unselectedLabelColor: colorSecondaryText,
+      labelPadding: EdgeInsets.only(bottom: 8.0),
+    ),
+
     // Define the default TextTheme. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and more.
     textTheme: TextTheme(

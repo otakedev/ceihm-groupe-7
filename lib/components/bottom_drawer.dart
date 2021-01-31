@@ -93,34 +93,36 @@ class _BottomDrawerState extends State<BottomDrawer>
         // ),
         PositionedTransition(
           rect: drawerAnimation,
-          child: Container(
-            decoration: BoxDecoration(
-              color: colorSecondary,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(borderRadius),
-                topRight: Radius.circular(borderRadius),
-              ),
+          child: PhysicalModel(
+            color: colorSecondaryText,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(borderRadius),
+              topRight: Radius.circular(borderRadius),
             ),
-            child: Column(
-              children: (() {
-                if (this.widget.actionPosition == ActionPosition.top) {
-                  return [
-                    _buildActions(drawerMarge, iconAnimation),
-                    _buildMenu()
-                  ];
-                } else {
-                  return [
-                    AnimatedSize(
-                      vsync: this,
-                      duration: Duration(milliseconds: 100),
-                      child: SizedBox(height: _addMarginToDrawer ? 30 : 0),
-                    ),
-                    _buildMenu(),
-                    _buildActions(drawerMarge, iconAnimation),
-                  ];
-                }
-              })(),
+            clipBehavior: Clip.antiAlias,
+            elevation: 4,
+            child: Container(
+              color: colorSecondary,
+              child: Column(
+                children: (() {
+                  if (this.widget.actionPosition == ActionPosition.top) {
+                    return [
+                      _buildActions(drawerMarge, iconAnimation),
+                      _buildMenu()
+                    ];
+                  } else {
+                    return [
+                      AnimatedSize(
+                        vsync: this,
+                        duration: Duration(milliseconds: 100),
+                        child: SizedBox(height: _addMarginToDrawer ? 30 : 0),
+                      ),
+                      _buildMenu(),
+                      _buildActions(drawerMarge, iconAnimation),
+                    ];
+                  }
+                })(),
+              ),
             ),
           ),
         )
@@ -170,11 +172,12 @@ class _BottomDrawerState extends State<BottomDrawer>
                       onPressed: () => _bottomDrawerOpened
                           ? _drawerController.reverse()
                           : _drawerController.forward(),
-                      child: Row(
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.center,
                         children: [
                           Text(
                             '${_bottomDrawerOpened ? this.widget.drawerOpenedText : this.widget.drawerClosedText}',
-                            style: TextStyle(fontSize: 11),
                           ),
                           RotationTransition(
                             turns: iconAnimation,

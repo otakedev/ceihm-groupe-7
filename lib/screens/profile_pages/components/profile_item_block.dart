@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:alergo/models/profile_item_block_model.dart';
-import 'package:alergo/screens/profile_pages/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class ProfileItemBlock extends StatelessWidget {
       child: Card(
         color: isSelected ? colorValid : ThemeData().cardColor,
         clipBehavior: Clip.antiAlias,
-        elevation: isSelected ? 1 : 4,
+        elevation: isSelected ? 0 : 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(borderRadius),

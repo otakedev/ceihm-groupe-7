@@ -1,4 +1,5 @@
 import 'package:alergo/core/router.dart';
+import 'package:alergo/screens/profile_pages/update_profile_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/screens/search_page/search_page.dart';
 import 'package:alergo/theme/colors.dart';
@@ -25,7 +26,8 @@ class _HomePageState extends State<HomePage> {
           iconSize: 50,
           color: colorSecondaryText,
           icon: Icon(Icons.supervised_user_circle_outlined),
-          onPressed: () => {},
+          onPressed: () =>
+              navigateToRoute(context, UpdateProfilePage.routeName),
         ),
         title: Text('ALERGO'),
         actions: [
