@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:alergo/models/profile_item_block_model.dart';
 import 'package:alergo/screens/profile_pages/profile_selector_notifier.dart';
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class ProfileItemBlock extends StatelessWidget {
         elevation: isSelected ? 1 : 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(20),
+            Radius.circular(borderRadius),
           ),
         ),
         child: Column(

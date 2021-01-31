@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:alergo/core/text_style.dart';
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 
 enum ActionPosition { top, bottom }
@@ -100,8 +98,8 @@ class _BottomDrawerState extends State<BottomDrawer>
               color: colorSecondary,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0),
+                topLeft: Radius.circular(borderRadius),
+                topRight: Radius.circular(borderRadius),
               ),
             ),
             child: Column(

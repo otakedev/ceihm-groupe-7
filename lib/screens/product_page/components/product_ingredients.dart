@@ -1,5 +1,6 @@
 import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/product_model.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:alergo/theme/colors.dart';
 
@@ -22,7 +23,7 @@ class ProductIngredients extends StatelessWidget {
             margin: const EdgeInsets.all(8),
             constraints: BoxConstraints(minHeight: 40),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
               color: colorSecondary,
             ),
             child: Center(
@@ -40,7 +41,8 @@ class ProductIngredients extends StatelessWidget {
                     constraints: BoxConstraints(minHeight: 40),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(borderRadius)),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -52,16 +54,22 @@ class ProductIngredients extends StatelessWidget {
                     ),
                     child: Row(
                       children: <Widget>[
-                        PhysicalModel(
-                          elevation: 4,
-                          color: this.color,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          child: Container(
-                            padding: EdgeInsets.only(left: 30, right: 30),
-                            constraints: BoxConstraints(minHeight: 40),
-                            child: Center(
-                                child: Text(product.ingredients[index].quantity,
-                                    style: bodyText2White(context))),
+                        Container(
+                          padding: EdgeInsets.only(left: 30, right: 30),
+                          constraints: BoxConstraints(minHeight: 40),
+                          decoration: BoxDecoration(
+                            color: this.color,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(borderRadius)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 2,
+                                offset:
+                                    Offset(0, 0), // changes position of shadow
+                              ),
+                            ],
                           ),
                         ),
                         Expanded(

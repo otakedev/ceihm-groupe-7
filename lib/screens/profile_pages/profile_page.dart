@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:alergo/components/bottom_drawer.dart';
 import 'package:alergo/components/dismissible_list_view.dart';
 import 'package:alergo/core/utils.dart';

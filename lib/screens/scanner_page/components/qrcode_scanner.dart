@@ -57,7 +57,7 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             formatsAllowed: [BarcodeFormat.qrcode],
             overlay: QrScannerOverlayShape(
               borderColor: colorAccent,
-              borderRadius: 10,
+              borderRadius: 20,
               borderLength: 30,
               borderWidth: 10,
               cutOutSize: scanArea,

@@ -1,4 +1,5 @@
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 
 dropShadow({
@@ -10,7 +11,7 @@ dropShadow({
       shape: shape,
       borderRadius: shape == BoxShape.rectangle
           ? BorderRadius.all(
-              Radius.circular(10),
+              Radius.circular(borderRadius),
             )
           : null,
       boxShadow: [

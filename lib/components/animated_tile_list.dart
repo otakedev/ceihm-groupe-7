@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedTileList extends StatefulWidget {
@@ -54,7 +55,7 @@ class _AnimatedTileListState extends State<AnimatedTileList> {
                   : this.widget.color,
               borderRadius: snapshot.data
                   ? BorderRadius.all(
-                      Radius.circular(25.0),
+                      Radius.circular(borderRadius),
                     )
                   : null,
             ),
