@@ -1,5 +1,7 @@
 import 'package:alergo/core/text_style.dart';
+import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
+import 'package:alergo/models/user_model.dart';
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
@@ -11,6 +13,9 @@ class ProductDetails extends StatelessWidget {
     this.color = colorPrimary,
     this.icon,
     this.compatibilityTitle,
+    this.user,
+    this.dictionary,
+    this.computeFunction,
     Key key,
   })  : assert(product != null),
         super(key: key);
@@ -19,6 +24,9 @@ class ProductDetails extends StatelessWidget {
   final Color color;
   final IconData icon;
   final String compatibilityTitle;
+  final UserModel user;
+  final dictionary;
+  final StringStateCallback computeFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +108,12 @@ class ProductDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              ProductIngredients(product: product, color: color),
+              ProductIngredients(
+                product: product,
+                user: this.user,
+                dictionary: this.dictionary,
+                computeFunction: this.computeFunction,
+              ),
             ],
           ),
         ),
@@ -108,3 +121,6 @@ class ProductDetails extends StatelessWidget {
     );
   }
 }
+
+typedef StringStateCallback = String Function(
+    List<IngredientModel> ingredients, UserModel user);
