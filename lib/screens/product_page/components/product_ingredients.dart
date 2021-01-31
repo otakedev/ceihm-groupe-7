@@ -78,6 +78,9 @@ class ProductIngredients extends StatelessWidget {
                               ),
                             ],
                           ),
+                          child: Center(
+                              child: Text(product.ingredients[index].quantity,
+                                  style: bodyText2White(context))),
                         ),
                         Expanded(
                             child: Center(

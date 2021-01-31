@@ -4,11 +4,13 @@ import 'package:alergo/core/router.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
 import 'package:alergo/models/user_model.dart';
+import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:alergo/screens/product_page/components/product_details.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatelessWidget {
   static const routeName = '/product';
@@ -37,33 +39,34 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // POUR LES PHASES DE DEV , NE PAS SUPPRIMER
-    final ProductModel product =
-        ProductModel.fromMock().firstWhere((e) => "1" == e.id);
-
-    final UserModel usertest =
-        UserModel.fromMock().firstWhere((element) => "1" == element.id);
-    // final ProductModel product = ModalRoute.of(context).settings.arguments;
-
-    final Color color =
-        productValidity[computeCompatibility(product.ingredients, usertest)]
-                ["color"] ??
-            colorPrimary;
-    final IconData icon =
-        productValidity[computeCompatibility(product.ingredients, usertest)]
-            ["icon"];
-    final String text =
-        productValidity[computeCompatibility(product.ingredients, usertest)]
-            ["text"];
+    // final ProductModel product =
+    //     ProductModel.fromMock().firstWhere((e) => "1" == e.id);
+    final ProductModel product = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      body: ProductDetails(
-          product: product,
-          color: color,
-          icon: icon,
-          compatibilityTitle: text,
-          user: usertest,
-          dictionary: productValidity,
-          computeFunction: computeCompatibility),
+      body: Consumer<ProfileSelectorNotifier>(
+        builder: (context, profileSelector, child) {
+          final UserModel user = profileSelector.getModel();
+          final Color color =
+              productValidity[computeCompatibility(product.ingredients, user)]
+                      ["color"] ??
+                  colorPrimary;
+          final IconData icon =
+              productValidity[computeCompatibility(product.ingredients, user)]
+                  ["icon"];
+          final String text =
+              productValidity[computeCompatibility(product.ingredients, user)]
+                  ["text"];
+          return ProductDetails(
+              product: product,
+              color: color,
+              icon: icon,
+              compatibilityTitle: text,
+              user: user,
+              dictionary: productValidity,
+              computeFunction: computeCompatibility);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: SvgPicture.asset(
           'assets/qrcodescan.svg',

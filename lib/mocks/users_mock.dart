@@ -1,7 +1,5 @@
 const USERS_MOCK = [
   {
-    "id": "1",
-    "name": "Jean",
     "forbiddenIngredients": [
       {
         "itemName": "Sucre",
@@ -17,8 +15,6 @@ const USERS_MOCK = [
     ],
   },
   {
-    "id": "2",
-    "name": "Nays",
     "forbiddenIngredients": [
       {
         "itemName": "Sucre",
@@ -34,8 +30,6 @@ const USERS_MOCK = [
     ],
   },
   {
-    "id": "3",
-    "name": "Marre",
     "forbiddenIngredients": [
       {
         "itemName": "Sucre",

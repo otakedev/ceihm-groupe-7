@@ -1,4 +1,5 @@
 import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ProfileSelectorNotifier with ChangeNotifier {
@@ -86,6 +87,13 @@ class ProfileSelectorNotifier with ChangeNotifier {
         break;
     }
     notifyListeners();
+  }
+
+  getModel() {
+    return new UserModel(
+        forbiddenIngredients: _selectedForbiddenProduct,
+        likedIngredients: _selectedDiet,
+        unlikedIngredients: _selectedUnlikedProduct);
   }
 }
 
