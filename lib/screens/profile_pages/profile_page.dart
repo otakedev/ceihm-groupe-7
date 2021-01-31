@@ -85,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               ProfileFinalTabPage(
                 text:
-                    "Votre profil est complet. Vous pourez le modifier à tout moment (Icone Profil).",
+                    "Votre profil est complet. Vous pourrez le modifier à tout moment (Icone Profil).",
               )
             ],
           ),
