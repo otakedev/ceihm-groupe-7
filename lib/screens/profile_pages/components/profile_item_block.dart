@@ -41,7 +41,8 @@ class ProfileItemBlock extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
+            Container(
+              height: 100,
               child: isSelected
                   ? Stack(
                       alignment: AlignmentDirectional.center,
@@ -82,6 +83,7 @@ class ProfileItemBlock extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 item.itemName,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
