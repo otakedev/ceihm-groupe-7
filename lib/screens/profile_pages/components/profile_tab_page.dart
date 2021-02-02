@@ -19,6 +19,7 @@ class ProfileTabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double bottomPadding = MediaQuery.of(context).size.width * 0.2;
     return Container(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -36,20 +37,23 @@ class ProfileTabPage extends StatelessWidget {
                 ),
               ),
             Flexible(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: MediaQuery.of(context).size.width * 0.05,
-                  mainAxisSpacing: MediaQuery.of(context).size.height * 0.02,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomPadding),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: MediaQuery.of(context).size.width * 0.05,
+                    mainAxisSpacing: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  shrinkWrap: true,
+                  itemCount: items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProfileItemBlock(
+                      item: items[index],
+                      type: profileType,
+                    );
+                  },
                 ),
-                shrinkWrap: true,
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ProfileItemBlock(
-                    item: items[index],
-                    type: profileType,
-                  );
-                },
               ),
             ),
           ],
