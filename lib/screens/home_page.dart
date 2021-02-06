@@ -1,5 +1,5 @@
 import 'package:alergo/core/router.dart';
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/profile_pages/profile_page.dart';
 import 'package:alergo/screens/profile_pages/update_profile_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: Consumer<ProfileSelectorNotifier>(
+        leading: Consumer<ProfileSelectorProvider>(
             builder: (context, profileSelector, child) {
           if (profileSelector.getModel().isNotSet()) {
             return Badge(

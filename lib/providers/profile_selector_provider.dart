@@ -3,7 +3,7 @@ import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/models/user_model.dart';
 import 'package:flutter/material.dart';
 
-class ProfileSelectorNotifier with ChangeNotifier {
+class ProfileSelectorProvider with ChangeNotifier {
   List<ProfileItemModel> _selectedDiet = [];
   List<ProfileItemModel> _selectedForbiddenProduct = [];
   List<ProfileItemModel> _selectedUnlikedProduct = [];

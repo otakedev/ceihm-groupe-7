@@ -2,7 +2,7 @@ import 'package:alergo/components/bottom_drawer.dart';
 import 'package:alergo/components/dismissible_list_view.dart';
 import 'package:alergo/models/diet_model.dart';
 import 'package:alergo/models/ingredient_model.dart';
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/profile_pages/components/build_widgets_selection.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tab_page.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _BuildBottomDrawerState extends State<BuildBottomDrawer> {
       }
     });
 
-    return Consumer<ProfileSelectorNotifier>(
+    return Consumer<ProfileSelectorProvider>(
       builder: (context, profileSelector, child) => BottomDrawer(
         drawerClosedText: "Mes Choix",
         drawerOpenedText: "Fermer",

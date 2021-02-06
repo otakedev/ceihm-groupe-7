@@ -1,4 +1,5 @@
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/product_history_provider.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/home_page.dart';
 import 'package:alergo/screens/product_page/product_page.dart';
 import 'package:alergo/screens/profile_pages/profile_page.dart';
@@ -11,8 +12,11 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<ProfileSelectorNotifier>(
-      create: (_) => ProfileSelectorNotifier(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProfileSelectorProvider()),
+        ChangeNotifierProvider(create: (_) => ProductHistoryProvider()),
+      ],
       child: MyApp(),
     ),
   );
