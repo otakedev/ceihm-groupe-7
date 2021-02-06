@@ -31,6 +31,7 @@ class ProfileTabPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsiveWidth = MediaQuery.of(context).size.width * 0.05;
     final responsiveHeight = MediaQuery.of(context).size.height * 0.02;
+    final double bottomPadding = MediaQuery.of(context).size.width * 0.2;
 
     var searchBar = SearchBar<ProfileItemModel>(
       emptyWidget: Center(
@@ -53,20 +54,23 @@ class ProfileTabPage extends StatelessWidget {
       crossAxisSpacing: responsiveWidth,
       mainAxisSpacing: responsiveHeight,
       shrinkWrap: true,
-      placeHolder: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: responsiveWidth,
-          mainAxisSpacing: responsiveHeight,
+      placeHolder: Padding(
+        padding: EdgeInsets.only(bottom: bottomPadding),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: responsiveWidth,
+            mainAxisSpacing: responsiveHeight,
+          ),
+          shrinkWrap: true,
+          itemCount: items.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ProfileItemBlock(
+              item: items[index],
+              type: profileType,
+            );
+          },
         ),
-        shrinkWrap: true,
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ProfileItemBlock(
-            item: items[index],
-            type: profileType,
-          );
-        },
       ),
     );
 

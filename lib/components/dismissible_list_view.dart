@@ -74,6 +74,7 @@ class _DismissibleListViewState extends State<DismissibleListView> {
                   ..removeCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
+                      behavior: SnackBarBehavior.floating,
                       content: this.widget.snackbarContent,
                       action: SnackBarAction(
                         label: this.widget.snackBarActionLabel,

@@ -1,11 +1,15 @@
 import 'package:alergo/core/router.dart';
+import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/screens/profile_pages/profile_page.dart';
 import 'package:alergo/screens/profile_pages/update_profile_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/screens/search_page/search_page.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/customs.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -22,13 +26,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: IconButton(
-          iconSize: 50,
-          color: colorSecondaryText,
-          icon: Icon(Icons.supervised_user_circle_outlined),
-          onPressed: () =>
-              navigateToRoute(context, UpdateProfilePage.routeName),
-        ),
+        leading: Consumer<ProfileSelectorNotifier>(
+            builder: (context, profileSelector, child) {
+          if (profileSelector.getModel().isNotSet()) {
+            return Badge(
+              position: BadgePosition.topStart(top: 6, start: 6),
+              badgeContent: Icon(Icons.add, color: colorWhite, size: 12),
+              child: _buildUpdateProfile(context, ProfilePage.routeName),
+            );
+          }
+          return _buildUpdateProfile(context, UpdateProfilePage.routeName);
+        }),
         title: Text('ALERGO'),
         actions: [
           IconButton(
@@ -68,6 +76,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  IconButton _buildUpdateProfile(BuildContext context, String route) {
+    return IconButton(
+      iconSize: 50,
+      color: colorSecondaryText,
+      icon: Icon(Icons.supervised_user_circle_outlined),
+      onPressed: () => navigateToRoute(context, route),
     );
   }
 }
