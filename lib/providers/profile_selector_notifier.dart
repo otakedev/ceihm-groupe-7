@@ -1,22 +1,22 @@
-import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/diet_model.dart';
+import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ProfileSelectorNotifier with ChangeNotifier {
-  List<ProfileItemBlockModel> _selectedDiet = [];
-  List<ProfileItemBlockModel> _selectedForbiddenProduct = [];
-  List<ProfileItemBlockModel> _selectedUnlikedProduct = [];
+  List<ProfileItemModel> _selectedDiet = [];
+  List<ProfileItemModel> _selectedForbiddenProduct = [];
+  List<ProfileItemModel> _selectedUnlikedProduct = [];
 
-  ProfileItemBlockModel _lastRemovedChoice;
+  ProfileItemModel _lastRemovedChoice;
   ProfileType _lastProfileType;
 
-  List<ProfileItemBlockModel> get selectedDiet => _selectedDiet;
-  List<ProfileItemBlockModel> get selectedForbiddenProduct =>
+  List<ProfileItemModel> get selectedDiet => _selectedDiet;
+  List<ProfileItemModel> get selectedForbiddenProduct =>
       _selectedForbiddenProduct;
-  List<ProfileItemBlockModel> get selectedUnlikedProduct =>
-      _selectedUnlikedProduct;
+  List<ProfileItemModel> get selectedUnlikedProduct => _selectedUnlikedProduct;
 
-  bool isSelected(ProfileItemBlockModel model, ProfileType type) {
+  bool isSelected(ProfileItemModel model, ProfileType type) {
     switch (type) {
       case ProfileType.DIET:
         return _selectedDiet.contains(model);
@@ -28,10 +28,13 @@ class ProfileSelectorNotifier with ChangeNotifier {
     return false;
   }
 
-  addElement(ProfileItemBlockModel model, ProfileType type) {
+  addElement(ProfileItemModel model, ProfileType type) {
     switch (type) {
       case ProfileType.DIET:
         _selectedDiet.add(model);
+        _selectedForbiddenProduct.addAll(
+          ((model as DietModel).forbiddenIngredients),
+        );
         break;
       case ProfileType.FORBIDDEN_PRODUCT:
         _selectedForbiddenProduct.add(model);
@@ -43,16 +46,20 @@ class ProfileSelectorNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  removeElement(ProfileItemBlockModel model, ProfileType type) {
+  removeElement(ProfileItemModel model, ProfileType type) {
     switch (type) {
       case ProfileType.DIET:
         _selectedDiet.removeWhere((element) => element == model);
+        (model as DietModel)
+            .forbiddenIngredients
+            .forEach((e) => _selectedForbiddenProduct.remove(e));
+
         break;
       case ProfileType.FORBIDDEN_PRODUCT:
-        _selectedForbiddenProduct.removeWhere((element) => element == model);
+        _selectedForbiddenProduct.remove(model);
         break;
       case ProfileType.UNLIKED_PRODUCT:
-        _selectedUnlikedProduct.removeWhere((element) => element == model);
+        _selectedUnlikedProduct.remove(model);
         break;
     }
     notifyListeners();
@@ -62,6 +69,9 @@ class ProfileSelectorNotifier with ChangeNotifier {
     switch (type) {
       case ProfileType.DIET:
         _lastRemovedChoice = _selectedDiet.removeAt(index);
+        (_lastRemovedChoice as DietModel)
+            .forbiddenIngredients
+            .forEach((e) => _selectedForbiddenProduct.remove(e));
         break;
       case ProfileType.FORBIDDEN_PRODUCT:
         _lastRemovedChoice = _selectedForbiddenProduct.removeAt(index);
@@ -74,26 +84,14 @@ class ProfileSelectorNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  undoLastRemoved() {
-    switch (_lastProfileType) {
-      case ProfileType.DIET:
-        _selectedDiet.add(_lastRemovedChoice);
-        break;
-      case ProfileType.FORBIDDEN_PRODUCT:
-        _selectedForbiddenProduct.add(_lastRemovedChoice);
-        break;
-      case ProfileType.UNLIKED_PRODUCT:
-        _selectedUnlikedProduct.add(_lastRemovedChoice);
-        break;
-    }
-    notifyListeners();
-  }
+  undoLastRemoved() => addElement(_lastRemovedChoice, _lastProfileType);
 
   getModel() {
     return new UserModel(
-        forbiddenIngredients: _selectedForbiddenProduct,
-        likedIngredients: _selectedDiet,
-        unlikedIngredients: _selectedUnlikedProduct);
+      forbiddenIngredients: _selectedForbiddenProduct,
+      compatibleIngredients: _selectedDiet,
+      uncompatibleIngredients: _selectedUnlikedProduct,
+    );
   }
 }
 

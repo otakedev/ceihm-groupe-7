@@ -1,39 +1,42 @@
 import 'package:alergo/mocks/users_mock.dart';
-import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/profile_item_model.dart';
 import 'package:flutter/widgets.dart';
 
 class UserModel {
-  final List<ProfileItemBlockModel> forbiddenIngredients;
-  final List<ProfileItemBlockModel> likedIngredients;
-  final List<ProfileItemBlockModel> unlikedIngredients;
+  final List<ProfileItemModel> forbiddenIngredients;
+  final List<ProfileItemModel> compatibleIngredients;
+  final List<ProfileItemModel> uncompatibleIngredients;
 
   UserModel({
     @required this.forbiddenIngredients,
-    @required this.likedIngredients,
-    @required this.unlikedIngredients,
+    @required this.compatibleIngredients,
+    @required this.uncompatibleIngredients,
   });
+
+  bool isNotSet() {
+    return forbiddenIngredients.isEmpty &&
+        compatibleIngredients.isEmpty &&
+        uncompatibleIngredients.isEmpty;
+  }
 
   UserModel.fromMap(Map<String, dynamic> json)
       : forbiddenIngredients = json['forbiddenIngredients']
-            .map<ProfileItemBlockModel>(
-                (model) => ProfileItemBlockModel.fromMap(model))
+            .map<ProfileItemModel>((model) => ProfileItemModel.fromMap(model))
             .toList(),
-        likedIngredients = json['likedIngredients']
-            .map<ProfileItemBlockModel>(
-                (model) => ProfileItemBlockModel.fromMap(model))
+        compatibleIngredients = json['compatibleIngredients']
+            .map<ProfileItemModel>((model) => ProfileItemModel.fromMap(model))
             .toList(),
-        unlikedIngredients = json['unlikedIngredients']
-            .map<ProfileItemBlockModel>(
-                (model) => ProfileItemBlockModel.fromMap(model))
+        uncompatibleIngredients = json['uncompatibleIngredients']
+            .map<ProfileItemModel>((model) => ProfileItemModel.fromMap(model))
             .toList();
 
   Map<String, dynamic> toMap() => {
-        "forbiddenIngredients": List<ProfileItemBlockModel>.from(
+        "forbiddenIngredients": List<ProfileItemModel>.from(
             forbiddenIngredients.map((i) => i.toMap())),
-        "likedIngredients": List<ProfileItemBlockModel>.from(
-            likedIngredients.map((i) => i.toMap())),
-        "unlikedIngredients": List<ProfileItemBlockModel>.from(
-            unlikedIngredients.map((i) => i.toMap())),
+        "compatibleIngredients": List<ProfileItemModel>.from(
+            compatibleIngredients.map((i) => i.toMap())),
+        "uncompatibleIngredients": List<ProfileItemModel>.from(
+            uncompatibleIngredients.map((i) => i.toMap())),
       };
 
   static List<UserModel> fromMock() =>

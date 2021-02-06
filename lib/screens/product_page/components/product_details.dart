@@ -1,7 +1,7 @@
 import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
-import 'package:alergo/models/user_model.dart';
+import 'package:alergo/screens/product_page/components/product_compatibility.dart';
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
@@ -11,22 +11,17 @@ class ProductDetails extends StatelessWidget {
   const ProductDetails({
     this.product,
     this.color = colorPrimary,
-    this.icon,
-    this.compatibilityTitle,
-    this.user,
-    this.dictionary,
-    this.computeFunction,
+    this.forEachCheckValidity,
+    this.compatibilityWidget,
     Key key,
-  })  : assert(product != null),
+  })  : assert(forEachCheckValidity != null),
+        assert(product != null),
         super(key: key);
 
   final ProductModel product;
   final Color color;
-  final IconData icon;
-  final String compatibilityTitle;
-  final UserModel user;
-  final dictionary;
-  final StringStateCallback computeFunction;
+  final Widget compatibilityWidget;
+  final ValidityState Function(IngredientModel ingredient) forEachCheckValidity;
 
   @override
   Widget build(BuildContext context) {
@@ -79,40 +74,11 @@ class ProductDetails extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
                   color: color,
                 ),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                          child: Container(
-                        height: 50,
-                        child: Center(
-                          child: Text(
-                            this.compatibilityTitle,
-                            style: headline4White(context),
-                          ),
-                        ),
-                      )),
-                      Container(
-                        height: 50,
-                        margin: EdgeInsets.only(right: 6),
-                        child: Center(
-                          child: Icon(
-                            this.icon,
-                            size: 40,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child: compatibilityWidget ?? const SizedBox.shrink(),
               ),
               ProductIngredients(
                 product: product,
-                user: this.user,
-                dictionary: this.dictionary,
-                computeFunction: this.computeFunction,
+                forEachCheckValidity: forEachCheckValidity,
               ),
             ],
           ),
@@ -121,6 +87,3 @@ class ProductDetails extends StatelessWidget {
     );
   }
 }
-
-typedef StringStateCallback = String Function(
-    List<IngredientModel> ingredients, UserModel user);

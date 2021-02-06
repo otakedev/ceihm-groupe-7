@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:alergo/components/bottom_drawer.dart';
 import 'package:alergo/components/dismissible_list_view.dart';
-import 'package:alergo/mocks/profil_items_mock.dart';
-import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/diet_model.dart';
+import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:alergo/screens/profile_pages/components/build_widgets_selection.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tab_page.dart';
@@ -49,15 +47,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             TabBarView(
               children: [
                 ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(DIET_ITEMS_MOCK),
+                  items: DietModel.fromMock(),
                   profileType: ProfileType.DIET,
                 ),
                 ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(FORBIDDEN_ITEMS_MOCK),
+                  items: IngredientModel.fromMock(),
                   profileType: ProfileType.FORBIDDEN_PRODUCT,
                 ),
                 ProfileTabPage(
-                  items: ProfileItemBlockModel.fromMock(UNLIKED_ITEMS_MOCK),
+                  items: IngredientModel.fromMock(),
                   profileType: ProfileType.UNLIKED_PRODUCT,
                 ),
               ],

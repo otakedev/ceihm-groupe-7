@@ -1,4 +1,4 @@
-import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/screens/profile_pages/components/profile_item_block.dart';
 import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +15,14 @@ class ProfileTabPage extends StatelessWidget {
         super(key: key);
 
   final String label;
-  final List<ProfileItemBlockModel> items;
+  final List<ProfileItemModel> items;
   final ProfileType profileType;
 
-  Future<List<ProfileItemBlockModel>> _searchItem(String search) async {
+  Future<List<ProfileItemModel>> _searchItem(String search) async {
     return items
         .where(
           (element) =>
-              element.itemName.toUpperCase().contains(search.toUpperCase()),
+              element.name.toUpperCase().contains(search.toUpperCase()),
         )
         .toList();
   }
@@ -32,7 +32,7 @@ class ProfileTabPage extends StatelessWidget {
     final responsiveWidth = MediaQuery.of(context).size.width * 0.05;
     final responsiveHeight = MediaQuery.of(context).size.height * 0.02;
 
-    var searchBar = SearchBar<ProfileItemBlockModel>(
+    var searchBar = SearchBar<ProfileItemModel>(
       emptyWidget: Center(
         child: Text("Aucun résultat"),
       ),
@@ -43,7 +43,7 @@ class ProfileTabPage extends StatelessWidget {
       cancellationWidget: Icon(Icons.cancel_rounded),
       minimumChars: 3,
       onSearch: _searchItem,
-      onItemFound: (ProfileItemBlockModel profile, int index) {
+      onItemFound: (ProfileItemModel profile, int index) {
         return ProfileItemBlock(
           item: profile,
           type: profileType,
