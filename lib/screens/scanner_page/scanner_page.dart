@@ -10,16 +10,14 @@ class ScannerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        body: QRCodeScanner(
-          onScan: (scanData) => navigateToRoute(
-            context,
-            ProductPage.routeName,
-            replace: true,
-            arguments: ProductModel.fromMock()
-                .firstWhere((e) => scanData.code == e.id),
-          ),
+    return Scaffold(
+      body: QRCodeScanner(
+        onScan: (scanData) => navigateToRoute(
+          context,
+          ProductPage.routeName,
+          replace: true,
+          arguments:
+              ProductModel.fromMock().firstWhere((e) => scanData.code == e.id),
         ),
       ),
     );

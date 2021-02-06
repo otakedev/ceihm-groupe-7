@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:alergo/models/profile_item_block_model.dart';
+import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/providers/profile_selector_notifier.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
@@ -16,7 +16,7 @@ class ProfileItemBlock extends StatelessWidget {
   })  : assert(item != null),
         super(key: key);
 
-  final ProfileItemBlockModel item;
+  final ProfileItemModel item;
   final ProfileType type;
 
   @override
@@ -82,11 +82,11 @@ class ProfileItemBlock extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                item.itemName,
+                item.name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 18,
                     color: isSelected ? Colors.black : Colors.grey),
               ),
             )

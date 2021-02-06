@@ -35,33 +35,27 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
             MediaQuery.of(context).size.height < 600)
         ? 300.0
         : 500.0;
-    return Column(
+    return Stack(
       children: [
-        Expanded(
-          flex: 1,
-          child: Container(
-            alignment: Alignment.bottomLeft,
-            child: IconButton(
-              iconSize: 42,
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => navigateBackFromPage(context),
-            ),
+        QRView(
+          key: qrKey,
+          cameraFacing: CameraFacing.back,
+          onQRViewCreated: _onQRViewCreated,
+          formatsAllowed: [BarcodeFormat.qrcode],
+          overlay: QrScannerOverlayShape(
+            borderColor: colorAccent,
+            borderRadius: 20,
+            borderLength: 30,
+            borderWidth: 10,
+            cutOutSize: scanArea,
           ),
         ),
-        Expanded(
-          flex: 9,
-          child: QRView(
-            key: qrKey,
-            cameraFacing: CameraFacing.front,
-            onQRViewCreated: _onQRViewCreated,
-            formatsAllowed: [BarcodeFormat.qrcode],
-            overlay: QrScannerOverlayShape(
-              borderColor: colorAccent,
-              borderRadius: 20,
-              borderLength: 30,
-              borderWidth: 10,
-              cutOutSize: scanArea,
-            ),
+        SafeArea(
+          child: IconButton(
+            color: colorWhite,
+            iconSize: 42,
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => navigateBackFromPage(context),
           ),
         ),
       ],

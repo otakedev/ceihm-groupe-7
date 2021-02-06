@@ -1,24 +1,26 @@
+import 'package:alergo/mocks/ingredients_mock.dart';
+import 'package:alergo/models/profile_item_model.dart';
 import 'package:flutter/widgets.dart';
 
-class IngredientModel {
+class IngredientModel extends ProfileItemModel {
   final String quantity;
-  final String name;
-  final int id;
 
-  IngredientModel(
-      {@required this.quantity, @required this.name, @required this.id})
-      : assert(name != null),
-        assert(quantity != null),
-        assert(id != null);
+  IngredientModel({
+    @required assetPath,
+    @required name,
+    @required id,
+    this.quantity,
+  }) : super(assetPath: assetPath, name: name, id: id);
 
   IngredientModel.fromMap(Map<String, dynamic> json)
       : quantity = json['quantity'],
-        id = json['id'],
-        name = json['name'];
+        super.fromMap(json);
 
   Map<String, dynamic> toMap() => {
         "quantity": quantity,
-        "name": name,
-        "id": id,
+        ...super.toMap(),
       };
+
+  static List<IngredientModel> fromMock() =>
+      INGREDIENTS_MOCK.map((model) => IngredientModel.fromMap(model)).toList();
 }

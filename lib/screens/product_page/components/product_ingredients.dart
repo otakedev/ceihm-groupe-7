@@ -1,24 +1,22 @@
 import 'package:alergo/core/text_style.dart';
+import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
-import 'package:alergo/theme/style.dart';
-import 'package:alergo/models/user_model.dart';
-import 'package:alergo/screens/product_page/components/product_details.dart';
-import 'package:flutter/material.dart';
+import 'package:alergo/screens/product_page/components/product_compatibility.dart';
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
+import 'package:flutter/material.dart';
 
 class ProductIngredients extends StatelessWidget {
   const ProductIngredients({
     Key key,
     @required this.product,
-    this.user,
-    this.dictionary,
-    this.computeFunction,
-  }) : super(key: key);
+    @required this.forEachCheckValidity,
+  })  : assert(product != null),
+        assert(forEachCheckValidity != null),
+        super(key: key);
 
   final ProductModel product;
-  final dictionary;
-  final UserModel user;
-  final StringStateCallback computeFunction;
+  final ValidityState Function(IngredientModel ingredient) forEachCheckValidity;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +40,8 @@ class ProductIngredients extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 itemCount: product.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final validity =
+                      forEachCheckValidity(product.ingredients[index]);
                   return Container(
                     margin: EdgeInsets.only(bottom: 20),
                     constraints: BoxConstraints(minHeight: 40),
@@ -64,9 +64,7 @@ class ProductIngredients extends StatelessWidget {
                           padding: EdgeInsets.only(left: 30, right: 30),
                           constraints: BoxConstraints(minHeight: 40),
                           decoration: BoxDecoration(
-                            color: this.dictionary[this.computeFunction(
-                                    [product.ingredients[index]], this.user)]
-                                ["color"],
+                            color: validity.color,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             boxShadow: [
                               BoxShadow(
@@ -79,25 +77,28 @@ class ProductIngredients extends StatelessWidget {
                             ],
                           ),
                           child: Center(
-                              child: Text(product.ingredients[index].quantity,
-                                  style: bodyText2White(context))),
+                            child: Text(
+                              product.ingredients[index].quantity,
+                              style: bodyText2White(context),
+                            ),
+                          ),
                         ),
                         Expanded(
-                            child: Center(
-                                child: Text(product.ingredients[index].name,
-                                    style: bodyText2Black(context)))),
+                          child: Center(
+                            child: Text(
+                              product.ingredients[index].name,
+                              style: bodyText2Black(context),
+                            ),
+                          ),
+                        ),
                         Container(
                           height: 40,
                           margin: EdgeInsets.only(right: 6),
                           child: Center(
                             child: Icon(
-                              this.dictionary[this.computeFunction(
-                                      [product.ingredients[index]], this.user)]
-                                  ["icon"],
+                              validity.icon,
                               size: 30,
-                              color: this.dictionary[this.computeFunction(
-                                      [product.ingredients[index]], this.user)]
-                                  ["color"],
+                              color: validity.color,
                             ),
                           ),
                         ),
