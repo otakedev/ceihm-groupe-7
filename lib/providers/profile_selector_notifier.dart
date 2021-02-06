@@ -86,7 +86,7 @@ class ProfileSelectorNotifier with ChangeNotifier {
 
   undoLastRemoved() => addElement(_lastRemovedChoice, _lastProfileType);
 
-  getModel() {
+  UserModel getModel() {
     return new UserModel(
       forbiddenIngredients: _selectedForbiddenProduct,
       compatibleIngredients: _selectedDiet,

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:alergo/core/router.dart';
@@ -9,7 +10,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 class QRCodeScanner extends StatefulWidget {
   const QRCodeScanner({this.onScan, Key key}) : super(key: key);
 
-  final void Function(Barcode) onScan;
+  final bool Function(Barcode) onScan;
 
   @override
   _QRCodeScannerState createState() => _QRCodeScannerState();
@@ -18,6 +19,7 @@ class QRCodeScanner extends StatefulWidget {
 class _QRCodeScannerState extends State<QRCodeScanner> {
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  String _lastCode;
 
   @override
   void reassemble() {
@@ -72,10 +74,12 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
-      if (this.widget.onScan != null) {
-        controller.dispose();
-        this.widget.onScan(scanData);
+      if (this.widget.onScan != null && _lastCode != scanData.code) {
+        if (this.widget.onScan(scanData)) {
+          controller.dispose();
+        }
       }
+      _lastCode = scanData.code;
     });
   }
 
