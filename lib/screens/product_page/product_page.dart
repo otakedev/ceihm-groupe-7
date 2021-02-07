@@ -41,28 +41,7 @@ class ProductPage extends StatelessWidget {
           );
         },
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            heroTag: 'search',
-            mini: true,
-            child: Icon(Icons.search),
-            onPressed: () => navigateToRoute(context, SearchBarPage.routeName,
-                replace: true),
-          ),
-          FloatingActionButton(
-            heroTag: 'scan',
-            child: SvgPicture.asset(
-              'assets/qrcodescan.svg',
-              color: colorWhite,
-              fit: BoxFit.contain,
-            ),
-            onPressed: () =>
-                navigateToPage(context, ScannerPage(), replace: true),
-          ),
-        ],
-      ),
+      floatingActionButton: QuickSearchTools(),
     );
   }
 
@@ -110,5 +89,37 @@ class ProductPage extends StatelessWidget {
           ),
         );
     }
+  }
+}
+
+class QuickSearchTools extends StatelessWidget {
+  const QuickSearchTools({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FloatingActionButton(
+          heroTag: 'search',
+          mini: true,
+          child: Icon(Icons.search),
+          onPressed: () =>
+              navigateToRoute(context, SearchBarPage.routeName, replace: true),
+        ),
+        FloatingActionButton(
+          heroTag: 'scan',
+          child: SvgPicture.asset(
+            'assets/qrcodescan.svg',
+            color: colorWhite,
+            fit: BoxFit.contain,
+          ),
+          onPressed: () =>
+              navigateToPage(context, ScannerPage(), replace: true),
+        ),
+      ],
+    );
   }
 }
