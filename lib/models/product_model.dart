@@ -1,6 +1,7 @@
 import 'package:alergo/mocks/products_mock.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:flutter/widgets.dart';
+import 'package:quiver/core.dart';
 
 class ProductModel {
   final String id;
@@ -40,4 +41,8 @@ class ProductModel {
 
   static List<ProductModel> fromMock() =>
       PRODUCTS_MOCK.map((model) => ProductModel.fromMap(model)).toList();
+
+  bool operator ==(o) => o is ProductModel && id == o.id && name == o.name;
+
+  int get hashCode => hash2(id.hashCode, name.hashCode);
 }

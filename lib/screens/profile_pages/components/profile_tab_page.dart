@@ -1,6 +1,6 @@
 import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/screens/profile_pages/components/profile_item_block.dart';
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';

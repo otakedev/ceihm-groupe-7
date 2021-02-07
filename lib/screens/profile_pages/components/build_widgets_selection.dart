@@ -1,10 +1,10 @@
 import 'package:alergo/models/profile_item_model.dart';
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tile_list.dart';
 import 'package:flutter/material.dart';
 
 List<Widget> buildProfileSelection(
-    ProfileSelectorNotifier profileSelector, ProfileType type) {
+    ProfileSelectorProvider profileSelector, ProfileType type) {
   switch (type) {
     case ProfileType.DIET:
       return getSelectedByType(

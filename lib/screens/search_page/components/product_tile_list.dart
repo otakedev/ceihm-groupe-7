@@ -21,9 +21,12 @@ class ProductTileList extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius),
       elevation: 4.0,
       child: ListTile(
-        leading: Image.network(
-          product.urlImage,
-          fit: BoxFit.contain,
+        leading: Hero(
+          tag: product.id,
+          child: Image.network(
+            product.urlImage,
+            fit: BoxFit.contain,
+          ),
         ),
         title: Text(product.name),
         subtitle: Text(product.description),

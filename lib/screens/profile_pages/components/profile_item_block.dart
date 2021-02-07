@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:alergo/models/profile_item_model.dart';
-import 'package:alergo/providers/profile_selector_notifier.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,8 @@ class ProfileItemBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileSelectorNotifier profileSelectorNotifier =
-        Provider.of<ProfileSelectorNotifier>(context);
+    final ProfileSelectorProvider profileSelectorNotifier =
+        Provider.of<ProfileSelectorProvider>(context);
 
     final isSelected = profileSelectorNotifier.isSelected(item, type);
 

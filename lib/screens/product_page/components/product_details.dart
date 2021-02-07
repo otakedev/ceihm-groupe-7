@@ -44,9 +44,12 @@ class ProductDetails extends StatelessWidget {
               ),
               background: Padding(
                 padding: EdgeInsets.all(50),
-                child: Image.network(
-                  product.urlImage,
-                  fit: BoxFit.contain,
+                child: Hero(
+                  tag: product.id,
+                  child: Image.network(
+                    product.urlImage,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
