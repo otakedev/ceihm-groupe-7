@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
@@ -37,6 +39,8 @@ class ProductIngredients extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
                 padding: const EdgeInsets.all(8),
                 itemCount: product.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -105,6 +109,30 @@ class ProductIngredients extends StatelessWidget {
                       ],
                     ),
                   );
+                }),
+          ),
+          Container(
+            margin: const EdgeInsets.all(8),
+            constraints: BoxConstraints(minHeight: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+              color: colorSecondary,
+            ),
+            child: Center(
+              child: Text('Labels', style: bodyText1Black(context)),
+            ),
+          ),
+          Container(
+            height: 200,
+            child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: product.labels.length,
+                itemBuilder: (BuildContext context, int index) {
+                  log(product.labels[index].assetPath);
+                  return Container(
+                      child: Image.asset(product.labels[index].assetPath,
+                          height: 80, width: 80));
                 }),
           ),
         ],

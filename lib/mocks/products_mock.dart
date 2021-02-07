@@ -12,6 +12,14 @@ const PRODUCTS_MOCK = [
       {"quantity": "2", ...INGREDIENT_EGG_MOCK},
       {"quantity": "50g", ...INGREDIENT_MILK_CHOCOLATE_MOCK},
     ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      }
+    ]
   },
   {
     "id": "2",
@@ -22,6 +30,14 @@ const PRODUCTS_MOCK = [
       {"quantity": "80g", ...INGREDIENT_SUGAR_MOCK},
       {"quantity": "4ml", ...INGREDIENT_CITRIC_ACIDE_MOCK},
       {"quantity": "80%", ...INGREDIENT_WATER_MOCK},
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
     ]
   },
   {
@@ -35,6 +51,14 @@ const PRODUCTS_MOCK = [
       {"quantity": "15%", ...INGREDIENT_BUTTER_MOCK},
       {"quantity": "20%", ...INGREDIENT_PALM_OIL_MOCK},
       {"quantity": "15%", ...INGREDIENT_HAZELNUT_MOCK},
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
     ]
   },
 ];

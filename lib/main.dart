@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Alergo Demo',
       theme: appTheme(),
-      initialRoute: StartPage.routeName,
+      initialRoute: ProductPage.routeName,
       routes: {
         HomePage.routeName: (context) => HomePage(),
         StartPage.routeName: (context) => StartPage(),
