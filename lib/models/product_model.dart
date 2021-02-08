@@ -1,6 +1,7 @@
 import 'package:alergo/mocks/products_mock.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/label_model.dart';
+import 'package:alergo/models/origin_model.dart';
 import 'package:flutter/widgets.dart';
 
 class ProductModel {
@@ -10,6 +11,7 @@ class ProductModel {
   final String urlImage;
   final List<IngredientModel> ingredients;
   final List<LabelModel> labels;
+  final OriginModel origin;
 
   ProductModel({
     @required this.id,
@@ -18,6 +20,7 @@ class ProductModel {
     @required this.urlImage,
     @required this.ingredients,
     @required this.labels,
+    @required this.origin,
   })  : assert(name != null),
         assert(id != null),
         assert(ingredients != null),
@@ -34,7 +37,8 @@ class ProductModel {
             .toList(),
         labels = json['labels']
             .map<LabelModel>((model) => LabelModel.fromMap(model))
-            .toList();
+            .toList(),
+        origin = OriginModel.fromMap(json['origin']);
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -44,6 +48,7 @@ class ProductModel {
         "ingredients":
             List<IngredientModel>.from(ingredients.map((i) => i.toMap())),
         "labels": List<LabelModel>.from(labels.map((i) => i.toMap())),
+        "origin": origin.toMap(),
       };
 
   static List<ProductModel> fromMock() =>

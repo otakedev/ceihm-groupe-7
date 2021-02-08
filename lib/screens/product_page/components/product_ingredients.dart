@@ -23,7 +23,7 @@ class ProductIngredients extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
+      child: Wrap(
         children: [
           Container(
             margin: const EdgeInsets.all(8),
@@ -123,17 +123,31 @@ class ProductIngredients extends StatelessWidget {
             ),
           ),
           Container(
-            height: 200,
+            height: 100,
             child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: product.labels.length,
                 itemBuilder: (BuildContext context, int index) {
                   log(product.labels[index].assetPath);
-                  return Container(
-                      child: Image.asset(product.labels[index].assetPath,
-                          height: 80, width: 80));
+                  return Tooltip(
+                    message: product.labels[index].description,
+                    child: Container(
+                        child: Image.asset(product.labels[index].assetPath,
+                            height: 80, width: 80)),
+                  );
                 }),
+          ),
+          Container(
+            margin: const EdgeInsets.all(8),
+            constraints: BoxConstraints(minHeight: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+              color: colorSecondary,
+            ),
+            child: Center(
+              child: Text('Provenance', style: bodyText1Black(context)),
+            ),
           ),
         ],
       ),
