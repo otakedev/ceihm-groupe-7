@@ -52,6 +52,7 @@ flutter:
     - assets/diets/vegan.jpg
     - assets/labels/AB.png
     - assets/labels/FR.png
+    - assets/origin/USA.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -109,7 +109,13 @@ const PRODUCTS_MOCK = [
         "id": 143,
         "description": "Issue de L'Agriculture Biologique"
       },
-    ]
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
   },
   {
     "id": "3",
@@ -155,6 +161,12 @@ const PRODUCTS_MOCK = [
         "id": 143,
         "description": "Issue de L'Agriculture Biologique"
       },
-    ]
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
   },
 ];

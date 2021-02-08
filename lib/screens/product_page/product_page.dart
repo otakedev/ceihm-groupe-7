@@ -21,9 +21,9 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // POUR LES PHASES DE DEV , NE PAS SUPPRIMER
-    final ProductModel product =
-        ProductModel.fromMock().firstWhere((e) => "1" == e.id);
-    // final ProductModel product = ModalRoute.of(context).settings.arguments;
+    // final ProductModel product =
+    //     ProductModel.fromMock().firstWhere((e) => "1" == e.id);
+    final ProductModel product = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       body: Consumer<ProfileSelectorNotifier>(
