@@ -19,71 +19,71 @@ const INGREDIENTS_MOCK = [
 
 const INGREDIENT_SUGAR_MOCK = {
   "name": "Sucre",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/sugar.jpeg",
   "id": 1,
 };
 const INGREDIENT_CITRIC_ACIDE_MOCK = {
   "name": "Acide citrique",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/citric-acid.jpg",
   "id": 2,
 };
 const INGREDIENT_WATER_MOCK = {
   "name": "Eau",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/water.jpg",
   "id": 3,
 };
 const INGREDIENT_FLOUR_MOCK = {
   "name": "Farine",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/flour.jpeg",
   "id": 4,
 };
 const INGREDIENT_BUTTER_MOCK = {
   "name": "Beure",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/butter.jpg",
   "id": 5,
 };
 const INGREDIENT_EGG_MOCK = {
   "name": "Oeuf",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/egg.jpeg",
   "id": 6,
 };
 const INGREDIENT_MILK_CHOCOLATE_MOCK = {
   "name": "Chocolat au lait",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/milk-choco.jpg",
   "id": 7,
 };
 const INGREDIENT_WHITE_CHOCOLATE_MOCK = {
   "name": "Chocolat blanc",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/white-choco.jpg",
   "id": 8,
 };
 const INGREDIENT_PALM_OIL_MOCK = {
   "name": "Huile de palme",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/palm-oil.jpg",
   "id": 9,
 };
 const INGREDIENT_HAZELNUT_MOCK = {
   "name": "Noisette",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/hazelnut.jpeg",
   "id": 10,
 };
 const INGREDIENT_SALADE_MOCK = {
   "name": "Salade",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/salad.jpg",
   "id": 11,
 };
 const INGREDIENT_TOFU_MOCK = {
   "name": "Tofu",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/tofu.jpg",
   "id": 12,
 };
 const INGREDIENT_BEEF_MOCK = {
   "name": "Boeuf",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/beef.jpg",
   "id": 13,
 };
 const INGREDIENT_CHICKEN_MOCK = {
   "name": "Poulet",
-  "assetPath": "assets/diets/vegan.jpg",
+  "assetPath": "assets/ingredients/chicken.jpg",
   "id": 14,
 };

@@ -42,7 +42,7 @@ class ProfileItemBlock extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 100,
+              height: 120,
               child: isSelected
                   ? Stack(
                       alignment: AlignmentDirectional.center,
