@@ -6,7 +6,6 @@ import 'package:alergo/screens/profile_pages/update_profile_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/screens/search_page/search_page.dart';
 import 'package:alergo/theme/colors.dart';
-import 'package:alergo/theme/customs.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
