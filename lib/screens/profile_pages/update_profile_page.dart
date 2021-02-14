@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:alergo/components/bottom_drawer.dart';
 import 'package:alergo/components/dismissible_list_view.dart';
+import 'package:alergo/core/router.dart';
+import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/diet_model.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/profile_pages/components/build_widgets_selection.dart';
 import 'package:alergo/screens/profile_pages/components/profile_tab_page.dart';
+import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,10 +35,19 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
 
     int _currentIndex = 0;
 
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              navigateBackFromPage(context, 'Profil sauvegardé');
+            },
+          ),
           bottom: TabBar(
             tabs: [
               const Text('Mes régimes'),

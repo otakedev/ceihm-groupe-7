@@ -6,6 +6,7 @@ import 'package:alergo/screens/profile_pages/update_profile_page.dart';
 import 'package:alergo/screens/scanner_page/scanner_page.dart';
 import 'package:alergo/screens/search_page/search_page.dart';
 import 'package:alergo/theme/colors.dart';
+import 'package:alergo/theme/style.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -97,7 +98,32 @@ class _HomePageState extends State<HomePage> {
       iconSize: 50,
       color: colorSecondaryText,
       icon: Icon(Icons.supervised_user_circle_outlined),
-      onPressed: () => navigateToRoute(context, route),
+      onPressed: () {
+        _navigateAndDisplayResult(context, route);
+      },
     );
   }
+}
+
+void _navigateAndDisplayResult(BuildContext context, String route) async {
+  final result = await Navigator.pushNamed(context, route);
+
+  Scaffold.of(context)
+    ..removeCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+        ),
+        backgroundColor: colorWhite,
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('$result', style: bodyText2Black(context)),
+            Icon(Icons.info_outline, color: colorPrimary),
+          ],
+        ),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
 }

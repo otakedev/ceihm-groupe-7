@@ -17,6 +17,6 @@ navigateToRoute(BuildContext context, String route,
       : Navigator.pushNamed(context, route, arguments: arguments);
 }
 
-navigateBackFromPage(BuildContext context) {
-  Navigator.pop(context);
+navigateBackFromPage<T extends Object>(BuildContext context, [T result]) {
+  Navigator.pop(context, result);
 }
