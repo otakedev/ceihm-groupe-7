@@ -1,4 +1,5 @@
 import 'package:alergo/models/diet_model.dart';
+import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,35 @@ class ProfileSelectorProvider with ChangeNotifier {
         return _selectedForbiddenProduct.contains(model);
       case ProfileType.UNLIKED_PRODUCT:
         return _selectedUnlikedProduct.contains(model);
+      default:
+        return false;
     }
-    return false;
+  }
+
+  updateOne(
+    IngredientModel ingredient,
+    ProfileType currentType,
+    ProfileType newType,
+  ) {
+    switch (currentType) {
+      case ProfileType.FORBIDDEN_PRODUCT:
+        _selectedForbiddenProduct.remove(ingredient);
+        break;
+      case ProfileType.UNLIKED_PRODUCT:
+        _selectedUnlikedProduct.remove(ingredient);
+        break;
+      default:
+    }
+    switch (newType) {
+      case ProfileType.FORBIDDEN_PRODUCT:
+        _selectedForbiddenProduct.add(ingredient);
+        break;
+      case ProfileType.UNLIKED_PRODUCT:
+        _selectedUnlikedProduct.add(ingredient);
+        break;
+      default:
+    }
+    notifyListeners();
   }
 
   addElement(ProfileItemModel model, ProfileType type) {
@@ -42,6 +70,7 @@ class ProfileSelectorProvider with ChangeNotifier {
       case ProfileType.UNLIKED_PRODUCT:
         _selectedUnlikedProduct.add(model);
         break;
+      default:
     }
     notifyListeners();
   }
@@ -61,6 +90,7 @@ class ProfileSelectorProvider with ChangeNotifier {
       case ProfileType.UNLIKED_PRODUCT:
         _selectedUnlikedProduct.remove(model);
         break;
+      default:
     }
     notifyListeners();
   }
@@ -79,6 +109,7 @@ class ProfileSelectorProvider with ChangeNotifier {
       case ProfileType.UNLIKED_PRODUCT:
         _lastRemovedChoice = _selectedUnlikedProduct.removeAt(index);
         break;
+      default:
     }
     _lastProfileType = type;
     notifyListeners();
@@ -95,4 +126,4 @@ class ProfileSelectorProvider with ChangeNotifier {
   }
 }
 
-enum ProfileType { DIET, FORBIDDEN_PRODUCT, UNLIKED_PRODUCT }
+enum ProfileType { DIET, FORBIDDEN_PRODUCT, UNLIKED_PRODUCT, LIKE, NONE }

@@ -29,79 +29,94 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NestedScrollView(
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            leading: BackButton(
-              color: colorWhite,
-            ),
-            expandedHeight: 200.0,
-            floating: false,
-            pinned: true,
-            backgroundColor: this.color,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              title: Text(
-                product.name,
-                style: bodyText1White(context),
-              ),
-              background: Padding(
-                padding: EdgeInsets.all(50),
-                child: Hero(
-                  tag: product.id,
-                  child: Image.network(
-                    product.urlImage,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          leading: BackButton(
+            color: colorWhite,
           ),
-        ];
-      },
-      body: Container(
-        color: color,
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(borderRadius),
-              topRight: Radius.circular(borderRadius),
+          expandedHeight: 200.0,
+          floating: false,
+          pinned: true,
+          backgroundColor: this.color,
+          flexibleSpace: FlexibleSpaceBar(
+            centerTitle: true,
+            title: Text(
+              product.name,
+              style: bodyText1White(context),
             ),
-          ),
-          child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.all(8),
-                constraints: BoxConstraints(minHeight: 50),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-                  color: color,
-                ),
-                child: compatibilityWidget ?? const SizedBox.shrink(),
-              ),
-              Expanded(
-                child: Wrap(
-                  children: [
-                    TitleBar(title: 'Liste des Ingrédients'),
-                    ProductIngredients(
-                      product: product,
-                      forEachCheckValidity: forEachCheckValidity,
-                    ),
-                    SimilarProductsSection(product: product),
-                    TitleBar(title: 'Labels'),
-                    ProductLabels(labels: product.labels),
-                    TitleBar(title: 'Provenance'),
-                    ProductOrigin(product: product),
-                  ],
+            background: Padding(
+              padding: EdgeInsets.all(50),
+              child: Hero(
+                tag: product.id,
+                child: Image.network(
+                  product.urlImage,
+                  fit: BoxFit.contain,
                 ),
               ),
-            ],
+            ),
           ),
         ),
+        SliverRoundedBorderValidity(
+          color: color,
+          compatibilityWidget: compatibilityWidget,
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              TitleBar(title: 'Liste des ingrédients'),
+              ProductIngredients(
+                product: product,
+                forEachCheckValidity: forEachCheckValidity,
+              ),
+              SimilarProductsSection(product: product),
+              TitleBar(title: 'Label${product.labels.length > 0 ? 's' : ''}'),
+              ProductLabels(labels: product.labels),
+              TitleBar(title: 'Provenance'),
+              ProductOrigin(product: product),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class SliverRoundedBorderValidity extends StatelessWidget {
+  const SliverRoundedBorderValidity({
+    Key key,
+    @required this.color,
+    @required this.compatibilityWidget,
+  }) : super(key: key);
+
+  final Color color;
+  final Widget compatibilityWidget;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Stack(
+        children: [
+          Container(color: color, width: double.infinity, height: 20),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(borderRadius),
+                topRight: Radius.circular(borderRadius),
+              ),
+            ),
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+                color: color,
+              ),
+              child: compatibilityWidget ?? const SizedBox.shrink(),
+            ),
+          ),
+        ],
       ),
     );
   }

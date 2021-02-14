@@ -39,12 +39,11 @@ class SimilarProductsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(allProducts.toString());
     List<ProductModel> similarProducts = this.getSimilarProducts();
     if (similarProducts.isNotEmpty) {
       return Container(
         margin: EdgeInsets.only(bottom: 10),
-        child: Wrap(
+        child: Column(
           children: [
             TitleBar(title: 'Bonne nouvelle !'),
             Padding(
@@ -73,7 +72,7 @@ class SimilarProductsSection extends StatelessWidget {
         ),
       );
     } else {
-      return Container();
+      return SizedBox.shrink();
     }
   }
 }

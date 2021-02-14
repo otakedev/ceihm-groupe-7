@@ -34,7 +34,7 @@ class SimilarProductPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: QuickSearchTools(),
+      floatingActionButton: QuickActionsFloatingButtons(),
     );
   }
 }

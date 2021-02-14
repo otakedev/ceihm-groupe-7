@@ -21,7 +21,7 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // POUR LES PHASES DE DEV , NE PAS SUPPRIMER
+    // FOR DEV PHASES, DO NOT DELETE
     // final ProductModel product =
     //     ProductModel.fromMock().firstWhere((e) => "1" == e.id);
     final ProductModel product = ModalRoute.of(context).settings.arguments;
@@ -35,19 +35,19 @@ class ProductPage extends StatelessWidget {
           return ProductDetails(
             product: product,
             color: validity.color ?? colorSecondary,
-            compatibilityWidget: _buildProductValidityWidget(validity, context),
+            compatibilityWidget: _buildProfileTypeWidget(validity, context),
             forEachCheckValidity: (ingredient) =>
                 verifyIngredientsValidity([ingredient], user),
           );
         },
       ),
-      floatingActionButton: QuickSearchTools(),
+      floatingActionButton: QuickActionsFloatingButtons(),
     );
   }
 
-  _buildProductValidityWidget(ValidityState validity, BuildContext context) {
+  _buildProfileTypeWidget(ValidityState validity, BuildContext context) {
     switch (validity.state) {
-      case ProductValidity.good:
+      case ProfileType.LIKE:
         return ProductCompatibility(
           color: validity.color,
           title: 'Compatible',
@@ -56,7 +56,7 @@ class ProductPage extends StatelessWidget {
             color: colorWhite,
           ),
         );
-      case ProductValidity.warning:
+      case ProfileType.UNLIKED_PRODUCT:
         return ProductCompatibility(
           color: validity.color,
           title: 'Incompatible',
@@ -65,7 +65,7 @@ class ProductPage extends StatelessWidget {
             color: colorWhite,
           ),
         );
-      case ProductValidity.forbidden:
+      case ProfileType.FORBIDDEN_PRODUCT:
         return ProductCompatibility(
           color: validity.color,
           title: 'Attention',
@@ -92,8 +92,8 @@ class ProductPage extends StatelessWidget {
   }
 }
 
-class QuickSearchTools extends StatelessWidget {
-  const QuickSearchTools({
+class QuickActionsFloatingButtons extends StatelessWidget {
+  const QuickActionsFloatingButtons({
     Key key,
   }) : super(key: key);
 
