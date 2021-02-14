@@ -1,5 +1,3 @@
-import 'package:alergo/models/ingredient_model.dart';
-
 const INGREDIENTS_MOCK = [
   INGREDIENT_SUGAR_MOCK,
   INGREDIENT_CITRIC_ACIDE_MOCK,
@@ -38,7 +36,7 @@ const INGREDIENT_FLOUR_MOCK = {
   "id": 4,
 };
 const INGREDIENT_BUTTER_MOCK = {
-  "name": "Beure",
+  "name": "Beurre",
   "assetPath": "assets/ingredients/butter.jpg",
   "id": 5,
 };
