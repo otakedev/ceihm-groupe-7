@@ -9,7 +9,7 @@ class DismissibleListView extends StatefulWidget {
   DismissibleListView({
     this.widgets = const [],
     this.snackbarContent = const Text("1 Choix enlevé"),
-    this.snackBarActionLabel = "Annulé",
+    this.snackBarActionLabel = "Annuler",
     this.onWidgetRemoved,
     this.onWidgetUndo,
     this.secondaryColor = colorWarn,
@@ -74,7 +74,6 @@ class _DismissibleListViewState extends State<DismissibleListView> {
                   ..removeCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
-                      behavior: SnackBarBehavior.floating,
                       content: this.widget.snackbarContent,
                       action: SnackBarAction(
                         label: this.widget.snackBarActionLabel,

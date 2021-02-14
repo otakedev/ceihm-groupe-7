@@ -1,5 +1,3 @@
-import 'package:alergo/mocks/ingredients_mock.dart';
-
 const PRODUCTS_MOCK = [
   {
     "id": "1",
@@ -15,7 +13,7 @@ const PRODUCTS_MOCK = [
       },
       {
         "quantity": "20g",
-        "name": "Beure",
+        "name": "Beurre",
         "assetPath": "assets/diets/vegan.jpg",
         "id": 5,
       },
@@ -137,7 +135,7 @@ const PRODUCTS_MOCK = [
       },
       {
         "quantity": "15%",
-        "name": "Beure",
+        "name": "Beurre",
         "assetPath": "assets/diets/vegan.jpg",
         "id": 5,
       },

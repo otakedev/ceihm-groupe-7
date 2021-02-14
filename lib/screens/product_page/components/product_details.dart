@@ -91,7 +91,7 @@ class ProductDetails extends StatelessWidget {
                       forEachCheckValidity: forEachCheckValidity,
                     ),
                     TitleBar(title: 'Labels'),
-                    ProductLabels(product: product),
+                    ProductLabels(labels: product.labels),
                     TitleBar(title: 'Provenance'),
                     ProductOrigin(product: product),
                   ],

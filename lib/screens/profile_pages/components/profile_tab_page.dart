@@ -31,7 +31,7 @@ class ProfileTabPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsiveWidth = MediaQuery.of(context).size.width * 0.05;
     final responsiveHeight = MediaQuery.of(context).size.height * 0.02;
-    final double bottomPadding = MediaQuery.of(context).size.width * 0.2;
+    final double bottomPadding = MediaQuery.of(context).size.width * 0.3;
 
     var searchBar = SearchBar<ProfileItemModel>(
       emptyWidget: Center(

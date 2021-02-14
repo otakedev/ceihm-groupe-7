@@ -13,6 +13,8 @@ class BottomDrawer extends StatefulWidget {
     this.rightAction,
     this.menuWidgets,
     this.actionPosition = ActionPosition.bottom,
+    this.actionPadding,
+    this.hint,
     this.drawerOpenedText = "Fermer",
     this.drawerClosedText = "Ouvrir",
     Key key,
@@ -20,9 +22,11 @@ class BottomDrawer extends StatefulWidget {
 
   final MenuAction leftAction;
   final MenuAction rightAction;
+  final EdgeInsets actionPadding;
   final Widget menuWidgets;
   final String drawerOpenedText;
   final String drawerClosedText;
+  final String hint;
   final ActionPosition actionPosition;
 
   @override
@@ -73,7 +77,9 @@ class _BottomDrawerState extends State<BottomDrawer>
   Stack _buildStack(BuildContext context, BoxConstraints constraints) {
     final drawerSize = constraints.biggest;
     final drawerTop = drawerSize.height;
-    final drawerMarge = ((drawerTop / 100) * 10);
+    final drawerMarge = ((drawerTop / 100) * 10) +
+        this.widget.actionPadding.bottom +
+        this.widget.actionPadding.top;
 
     final drawerAnimation = RelativeRectTween(
       begin: RelativeRect.fromLTRB(0.0, drawerTop - drawerMarge, 0.0, 0.0),
@@ -142,71 +148,98 @@ class _BottomDrawerState extends State<BottomDrawer>
 
     return Container(
       height: drawerMarge,
+      padding: this.widget.actionPadding.copyWith(bottom: 0),
       child: IntrinsicWidth(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
           children: [
-            SizedBox(width: 8),
-            Expanded(
-              child: Container(
-                height: drawerMarge - 20,
-                child: _leftAction != null
-                    ? RaisedButton(
-                        color: _leftAction.color,
-                        onPressed: () => {
-                          _drawerController.reverse(),
-                          _leftAction.onAction()
-                        },
-                        child: Text(
-                          _leftAction.text,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-            ),
-            Expanded(
-              child: this.widget.menuWidgets != null
-                  ? FlatButton(
-                      onPressed: () => _bottomDrawerOpened
-                          ? _drawerController.reverse()
-                          : _drawerController.forward(),
-                      child: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        alignment: WrapAlignment.center,
-                        children: [
-                          Text(
-                            '${_bottomDrawerOpened ? this.widget.drawerOpenedText : this.widget.drawerClosedText}',
-                          ),
-                          RotationTransition(
-                            turns: iconAnimation,
-                            child: Icon(Icons.arrow_drop_down),
+            Container(
+              height: drawerMarge - this.widget.actionPadding.bottom * 2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: double.infinity,
+                      child: _leftAction != null
+                          ? RaisedButton(
+                              color: _leftAction.color,
+                              onPressed: () => {
+                                _drawerController.reverse(),
+                                _leftAction.onAction()
+                              },
+                              child: Text(
+                                _leftAction.text,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                  Expanded(
+                    child: this.widget.menuWidgets != null
+                        ? Container(
+                            height: double.infinity,
+                            child: FlatButton(
+                              onPressed: () => _bottomDrawerOpened
+                                  ? _drawerController.reverse()
+                                  : _drawerController.forward(),
+                              child: Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                alignment: WrapAlignment.center,
+                                children: [
+                                  Text(
+                                    '${_bottomDrawerOpened ? this.widget.drawerOpenedText : this.widget.drawerClosedText}',
+                                  ),
+                                  RotationTransition(
+                                    turns: iconAnimation,
+                                    child: Icon(Icons.arrow_drop_down),
+                                  )
+                                ],
+                              ),
+                            ),
                           )
-                        ],
-                      ),
-                    )
-                  : const SizedBox(),
-            ),
-            Expanded(
-              child: Container(
-                height: drawerMarge - 20,
-                child: _rightAction != null
-                    ? RaisedButton(
-                        color: _rightAction.color,
-                        onPressed: () => {
-                          _drawerController.reverse(),
-                          _rightAction.onAction()
-                        },
-                        child: Text(
-                          _rightAction.text,
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
+                        : const SizedBox(),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: double.infinity,
+                      child: _rightAction != null
+                          ? RaisedButton(
+                              color: _rightAction.color,
+                              onPressed: () => {
+                                _drawerController.reverse(),
+                                _rightAction.onAction()
+                              },
+                              child: Text(
+                                _rightAction.text,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: this.widget.hint != null
+                    ? [
+                        Icon(Icons.info_outline, color: colorSecondaryText),
+                        SizedBox(width: 8),
+                        Expanded(
+                          // width: _width,
+                          child: Text('${this.widget.hint}'),
+                        ),
+                      ]
+                    : [],
+                // children: [],
+              ),
+            )
           ],
         ),
       ),

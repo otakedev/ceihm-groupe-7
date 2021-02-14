@@ -90,6 +90,10 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Consumer<ProfileSelectorProvider>(
             builder: (context, profileSelector, child) => BottomDrawer(
+              actionPadding:
+                  EdgeInsets.only(bottom: 32, top: 8, left: 8, right: 8),
+              hint:
+                  'Un régime présélectionne les ingrédients que vous ne pouvez pas consommer.',
               drawerClosedText: "Mes Choix",
               drawerOpenedText: "Fermer",
               actionPosition: ActionPosition.bottom,
@@ -102,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
               leftAction: _currentPage >= 1
                   ? MenuAction(
                       color: colorWhite,
-                      text: 'précédent',
+                      text: 'Précédent',
                       onAction: () => goToPreviousPage(),
                     )
                   : null,

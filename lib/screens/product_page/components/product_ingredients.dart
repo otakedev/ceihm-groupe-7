@@ -1,15 +1,9 @@
-import 'dart:developer';
-
-import 'package:alergo/components/title_bar.dart';
 import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/product_model.dart';
 import 'package:alergo/screens/product_page/components/product_compatibility.dart';
-import 'package:alergo/screens/product_page/components/product_labels.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
-
-import 'product_origin.dart';
 
 class ProductIngredients extends StatelessWidget {
   const ProductIngredients({
