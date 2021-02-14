@@ -41,43 +41,46 @@ class ProfileItemBlock extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              height: 120,
-              child: isSelected
-                  ? Stack(
-                      alignment: AlignmentDirectional.center,
-                      fit: StackFit.expand,
-                      children: [
-                        ColorFiltered(
-                          colorFilter:
-                              ColorFilter.mode(Colors.black, BlendMode.hue),
-                          child: Image.asset(
-                            item.assetPath,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                          ),
-                        ),
-                        ClipRRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 0.9, sigmaY: 0.9),
-                            child: Container(
-                              color: Colors.black.withOpacity(0),
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.check_rounded,
-                                color: colorValid,
-                                size: MediaQuery.of(context).size.width * 0.25,
-                              ),
+            Expanded(
+              child: Container(
+                child: isSelected
+                    ? Stack(
+                        alignment: AlignmentDirectional.center,
+                        fit: StackFit.expand,
+                        children: [
+                          ColorFiltered(
+                            colorFilter:
+                                ColorFilter.mode(Colors.black, BlendMode.hue),
+                            child: Image.asset(
+                              item.assetPath,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
                             ),
                           ),
-                        )
-                      ],
-                    )
-                  : Image.asset(
-                      item.assetPath,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                    ),
+                          ClipRRect(
+                            child: BackdropFilter(
+                              filter:
+                                  ImageFilter.blur(sigmaX: 0.9, sigmaY: 0.9),
+                              child: Container(
+                                color: Colors.black.withOpacity(0),
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.check_rounded,
+                                  color: colorValid,
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.25,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    : Image.asset(
+                        item.assetPath,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
