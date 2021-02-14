@@ -1,4 +1,5 @@
 import 'package:alergo/core/router.dart';
+import 'package:alergo/core/text_style.dart';
 import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/screens/profile_pages/profile_page.dart';
 import 'package:alergo/screens/profile_pages/update_profile_page.dart';
@@ -23,6 +24,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final _width = MediaQuery.of(context).size.width;
+
+    var _qrCodeWidget = ClipOval(
+      child: InkWell(
+        splashColor: colorPrimary,
+        onTap: () => navigateToPage(context, ScannerPage()),
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: Padding(
+            padding: const EdgeInsets.all(42.0),
+            child: SvgPicture.asset(
+              'assets/qrcodescan.svg',
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,30 +67,24 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: dropShadow(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PhysicalModel(
             color: colorSecondary,
             shape: BoxShape.circle,
-          ),
-          alignment: Alignment.center,
-          child: ClipOval(
-            child: Material(
-              color: colorSecondary,
-              child: InkWell(
-                splashColor: colorPrimary,
-                onTap: () => navigateToPage(context, ScannerPage()),
-                child: AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(42.0),
-                    child: SvgPicture.asset(
-                      'assets/qrcodescan.svg',
-                      fit: BoxFit.contain,
-                    ),
+            elevation: 8.0,
+            child: Container(
+              height: _width - 16.0, // padding top and bottom
+              width: _width,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment(0.0, 0.7),
+                    child: Text("SCANNER", style: bodyText1Black(context)),
                   ),
-                ),
+                  _qrCodeWidget,
+                ],
               ),
             ),
           ),
