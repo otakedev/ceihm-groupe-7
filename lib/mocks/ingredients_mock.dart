@@ -1,3 +1,5 @@
+import 'package:alergo/models/ingredient_model.dart';
+
 const INGREDIENTS_MOCK = [
   INGREDIENT_SUGAR_MOCK,
   INGREDIENT_CITRIC_ACIDE_MOCK,

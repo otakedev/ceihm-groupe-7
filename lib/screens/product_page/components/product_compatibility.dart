@@ -91,8 +91,8 @@ ValidityState verifyIngredientsValidity(
     user.uncompatibleIngredients.forEach((unliked) {
       if (element.id == unliked.id) {
         validity = ValidityState(
-          Icons.highlight_off_rounded,
-          colorWarn,
+          Icons.warning_rounded,
+          colorAccent,
           ProductValidity.warning,
         );
         return;
@@ -104,8 +104,8 @@ ValidityState verifyIngredientsValidity(
     user.forbiddenIngredients.forEach((forbidden) {
       if (element.id == forbidden.id) {
         validity = ValidityState(
-          Icons.warning_rounded,
-          colorAccent,
+          Icons.highlight_off_rounded,
+          colorWarn,
           ProductValidity.forbidden,
         );
         return;
