@@ -167,4 +167,39 @@ const PRODUCTS_MOCK = [
       "city": "NewYork"
     }
   },
+  {
+    "id": "4",
+    "name": "Coca Cola Zéro",
+    "description": "Une Description",
+    "urlImage":
+        "https://souriredessaveurs.com/3848-medium_default/coca-cola-zero-24-bouteilles-de-33-cl-en-verre-consigne-consigne-de-550-comprise-dans-le-prix.jpg",
+    "ingredients": [
+      {
+        "quantity": "4ml",
+        "name": "Acide citrique",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 2,
+      },
+      {
+        "quantity": "80%",
+        "name": "Eau",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 3,
+      },
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
+  },
 ];

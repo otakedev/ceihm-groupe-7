@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
         ProductPage.routeName: (context) => ProductPage(),
         SearchBarPage.routeName: (context) => SearchBarPage(),
         UpdateProfilePage.routeName: (context) => UpdateProfilePage(),
-        SimilarProductPage.routeName: (context) => SimilarProductPage()
       },
     );
   }
