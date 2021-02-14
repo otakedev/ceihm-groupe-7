@@ -13,7 +13,7 @@ class BottomDrawer extends StatefulWidget {
     this.rightAction,
     this.menuWidgets,
     this.actionPosition = ActionPosition.bottom,
-    this.actionPadding,
+    this.actionPadding = const EdgeInsets.all(0.0),
     this.hint,
     this.drawerOpenedText = "Fermer",
     this.drawerClosedText = "Ouvrir",
@@ -222,24 +222,22 @@ class _BottomDrawerState extends State<BottomDrawer>
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: this.widget.hint != null
-                    ? [
+            this.widget.hint != null
+                ? Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
                         Icon(Icons.info_outline, color: colorSecondaryText),
                         SizedBox(width: 8),
                         Expanded(
-                          // width: _width,
                           child: Text('${this.widget.hint}'),
                         ),
-                      ]
-                    : [],
-                // children: [],
-              ),
-            )
+                      ],
+                    ),
+                  )
+                : SizedBox.shrink()
           ],
         ),
       ),
