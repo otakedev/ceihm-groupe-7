@@ -15,12 +15,22 @@ class SimilarProductsSection extends StatelessWidget {
   final ProductModel product;
   static List<ProductModel> allProducts = ProductModel.fromMock();
 
+  bool currentProductIsCompatibleWith(ProductModel product) {
+    const LOW_SUGAR_KEY_WORD = "light";
+    const ZERO_SUGAR_KEY_WORD = "zéro";
+
+    return (product.name.toLowerCase().contains(LOW_SUGAR_KEY_WORD) ||
+            product.name.toLowerCase().contains(ZERO_SUGAR_KEY_WORD)) &&
+        product.id != this.product.id;
+  }
+
+  /// This function assumes that the user does not like sugar and works with coca cola products.
   List<ProductModel> getSimilarProducts() {
     const COLA_NAME = "cola";
+
     if (this.product.name.toLowerCase().contains(COLA_NAME)) {
       return allProducts
-          .where((product) => (product.name.toLowerCase().contains(COLA_NAME) &&
-              product.id != this.product.id))
+          .where((product) => currentProductIsCompatibleWith(product))
           .toList();
     } else {
       return new List<ProductModel>();
@@ -36,7 +46,7 @@ class SimilarProductsSection extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 10),
         child: Wrap(
           children: [
-            TitleBar(title: 'Produits similaires'),
+            TitleBar(title: 'Bonne nouvelle !'),
             Padding(
               padding: EdgeInsets.fromLTRB(20, 5, 20, 15),
               child: Text(

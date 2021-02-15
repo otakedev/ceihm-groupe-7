@@ -104,7 +104,7 @@ ValidityState verifyIngredientsValidity(
     user.forbiddenIngredients.forEach((forbidden) {
       if (element.id == forbidden.id) {
         validity = ValidityState(
-          Icons.highlight_off_rounded,
+          Icons.block,
           colorWarn,
           ProductValidity.forbidden,
         );

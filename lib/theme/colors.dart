@@ -9,7 +9,7 @@ const colorSecondaryText = const Color(0xFF8757575);
 const colorAccent = const Color(0xFFFF9800);
 const colorBackground = const Color(0xFFFFFFFF);
 const colorWhite = const Color(0xFFFFFFFFF);
-const colorWarn = const Color(0xFFFF5733);
+const colorWarn = const Color(0xFFCA0B00);
 const colorValid = const Color(0xFF00C853);
 
 MaterialColor generateMaterialColor(Color color) {
