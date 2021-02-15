@@ -6,6 +6,7 @@ import 'package:alergo/screens/product_page/components/product_compatibility.dar
 import 'package:alergo/screens/product_page/components/product_ingredients.dart';
 import 'package:alergo/screens/product_page/components/product_labels.dart';
 import 'package:alergo/screens/product_page/components/product_origin.dart';
+import 'package:alergo/screens/product_page/components/similar_products.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,7 @@ class ProductDetails extends StatelessWidget {
                       product: product,
                       forEachCheckValidity: forEachCheckValidity,
                     ),
+                    SimilarProductsSection(product: product),
                     TitleBar(title: 'Labels'),
                     ProductLabels(labels: product.labels),
                     TitleBar(title: 'Provenance'),

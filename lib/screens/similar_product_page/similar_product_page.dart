@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 
 class SimilarProductPage extends StatelessWidget {
   static const String routeName = '/similar-product';
-  const SimilarProductPage({Key key}) : super(key: key);
-
-  static List<ProductModel> products = ProductModel.fromMock();
+  const SimilarProductPage({
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final List<ProductModel> similarProducts =
+        ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -23,9 +26,9 @@ class SimilarProductPage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Expanded(
             child: ListView.builder(
-              itemCount: products.length,
+              itemCount: similarProducts.length,
               itemBuilder: (BuildContext context, int index) {
-                return SimilarItemProduct(product: products[index]);
+                return SimilarItemProduct(product: similarProducts[index]);
               },
             ),
           ),

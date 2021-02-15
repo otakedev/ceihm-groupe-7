@@ -167,4 +167,79 @@ const PRODUCTS_MOCK = [
       "city": "NewYork"
     }
   },
+  {
+    "id": "4",
+    "name": "Coca Cola Zéro",
+    "description": "Une Description",
+    "urlImage":
+        "https://cdn.metro-group.com/fr/fr_pim_397419001002_01.png?w=400&h=400&mode=pad",
+    "ingredients": [
+      {
+        "quantity": "4ml",
+        "name": "Acide citrique",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 2,
+      },
+      {
+        "quantity": "80%",
+        "name": "Eau",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 3,
+      },
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
+  },
+  {
+    "id": "5",
+    "name": "Coca Cola Light",
+    "description": "Une Description",
+    "urlImage": "https://pngimg.com/uploads/cocacola/coca_cola_PNG8912.png",
+    "ingredients": [
+      {
+        "quantity": "10g",
+        "name": "Sucre",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 1,
+      },
+      {
+        "quantity": "4ml",
+        "name": "Acide citrique",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 2,
+      },
+      {
+        "quantity": "80%",
+        "name": "Eau",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 3,
+      },
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
+  },
 ];

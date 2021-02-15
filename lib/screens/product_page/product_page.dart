@@ -79,7 +79,7 @@ class ProductPage extends StatelessWidget {
           onTap: () => navigateToRoute(context, ProfilePage.routeName),
           child: ProductCompatibility(
             title:
-                'Définissez votre profil pour recevoir des notifications détaillées',
+                'Définissez votre profil pour recevoir des indications sur mesure',
             elevation: 8.0,
             textstyle: bodyText1White(context),
             leading: Icon(
