@@ -49,10 +49,7 @@ class ProductDetails extends StatelessWidget {
               padding: EdgeInsets.all(50),
               child: Hero(
                 tag: product.id,
-                child: Image.network(
-                  product.urlImage,
-                  fit: BoxFit.contain,
-                ),
+                child: Image.asset(product.urlImage, fit: BoxFit.contain),
               ),
             ),
           ),

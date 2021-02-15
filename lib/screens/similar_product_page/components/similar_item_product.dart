@@ -62,10 +62,7 @@ class SimilarItemProduct extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Hero(
                       tag: product.id,
-                      child: Image.network(
-                        product.urlImage,
-                        fit: BoxFit.contain,
-                      ),
+                      child: Image.asset(product.urlImage, fit: BoxFit.contain),
                     ),
                   ),
                 )

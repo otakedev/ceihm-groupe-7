@@ -23,10 +23,7 @@ class ProductTileList extends StatelessWidget {
       child: ListTile(
         leading: Hero(
           tag: product.id,
-          child: Image.network(
-            product.urlImage,
-            fit: BoxFit.contain,
-          ),
+          child: Image.asset(product.urlImage, fit: BoxFit.contain),
         ),
         title: Text(product.name),
         subtitle: Text(product.description),
