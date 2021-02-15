@@ -7,13 +7,13 @@ class SimilarProductPage extends StatelessWidget {
   static const String routeName = '/similar-product';
   const SimilarProductPage({
     Key key,
-    @required this.similarProducts,
   }) : super(key: key);
-
-  final List<ProductModel> similarProducts;
 
   @override
   Widget build(BuildContext context) {
+    final List<ProductModel> similarProducts =
+        ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

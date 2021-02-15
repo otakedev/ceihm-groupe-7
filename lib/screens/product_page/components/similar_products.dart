@@ -61,14 +61,12 @@ class SimilarProductsSection extends StatelessWidget {
                 icon: Icon(
                   Icons.filter_none,
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SimilarProductPage(
-                            similarProducts: similarProducts)),
-                  );
-                },
+                onPressed: () => navigateToRoute(
+                  context,
+                  SimilarProductPage.routeName,
+                  replace: true,
+                  arguments: similarProducts,
+                ),
               ),
             )
           ],

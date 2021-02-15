@@ -172,7 +172,7 @@ const PRODUCTS_MOCK = [
     "name": "Coca Cola Zéro",
     "description": "Une Description",
     "urlImage":
-        "https://souriredessaveurs.com/3848-medium_default/coca-cola-zero-24-bouteilles-de-33-cl-en-verre-consigne-consigne-de-550-comprise-dans-le-prix.jpg",
+        "https://cdn.metro-group.com/fr/fr_pim_397419001002_01.png?w=400&h=400&mode=pad",
     "ingredients": [
       {
         "quantity": "4ml",
@@ -206,8 +206,7 @@ const PRODUCTS_MOCK = [
     "id": "5",
     "name": "Coca Cola Light",
     "description": "Une Description",
-    "urlImage":
-        "https://cdn.shopify.com/s/files/1/0269/2121/products/Coca_Cola_Light_Mexico_Glass_Bottle.jpg?v=1568871385",
+    "urlImage": "https://pngimg.com/uploads/cocacola/coca_cola_PNG8912.png",
     "ingredients": [
       {
         "quantity": "10g",
