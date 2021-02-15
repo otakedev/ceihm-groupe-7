@@ -1,6 +1,7 @@
 import 'package:alergo/core/text_style.dart';
 import 'package:alergo/models/ingredient_model.dart';
 import 'package:alergo/models/user_model.dart';
+import 'package:alergo/providers/profile_selector_provider.dart';
 import 'package:alergo/theme/colors.dart';
 import 'package:alergo/theme/style.dart';
 import 'package:flutter/material.dart';
@@ -64,13 +65,13 @@ ValidityState verifyIngredientsValidity(
     validity = ValidityState(
       Icons.face,
       colorPrimary,
-      ProductValidity.normal,
+      ProfileType.NONE,
     );
   } else {
     validity = ValidityState(
       Icons.check_circle_sharp,
       colorValid,
-      ProductValidity.good,
+      ProfileType.LIKE,
     );
   }
 
@@ -80,7 +81,7 @@ ValidityState verifyIngredientsValidity(
         validity = ValidityState(
           Icons.check_circle_sharp,
           colorValid,
-          ProductValidity.good,
+          ProfileType.LIKE,
         );
         return;
       }
@@ -93,7 +94,7 @@ ValidityState verifyIngredientsValidity(
         validity = ValidityState(
           Icons.warning_rounded,
           colorAccent,
-          ProductValidity.warning,
+          ProfileType.UNLIKED_PRODUCT,
         );
         return;
       }
@@ -106,7 +107,7 @@ ValidityState verifyIngredientsValidity(
         validity = ValidityState(
           Icons.block,
           colorWarn,
-          ProductValidity.forbidden,
+          ProfileType.FORBIDDEN_PRODUCT,
         );
         return;
       }
@@ -116,12 +117,10 @@ ValidityState verifyIngredientsValidity(
   return validity;
 }
 
-enum ProductValidity { good, warning, forbidden, normal }
-
 class ValidityState {
   final IconData icon;
   final Color color;
-  final ProductValidity state;
+  final ProfileType state;
 
   ValidityState(this.icon, this.color, this.state);
 }
