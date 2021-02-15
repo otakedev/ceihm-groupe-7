@@ -202,4 +202,45 @@ const PRODUCTS_MOCK = [
       "city": "NewYork"
     }
   },
+  {
+    "id": "5",
+    "name": "Coca Cola Light",
+    "description": "Une Description",
+    "urlImage":
+        "https://cdn.shopify.com/s/files/1/0269/2121/products/Coca_Cola_Light_Mexico_Glass_Bottle.jpg?v=1568871385",
+    "ingredients": [
+      {
+        "quantity": "10g",
+        "name": "Sucre",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 1,
+      },
+      {
+        "quantity": "4ml",
+        "name": "Acide citrique",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 2,
+      },
+      {
+        "quantity": "80%",
+        "name": "Eau",
+        "assetPath": "assets/diets/vegan.jpg",
+        "id": 3,
+      },
+    ],
+    "labels": [
+      {
+        "name": "Agriculture Biologique",
+        "assetPath": "assets/labels/AB.png",
+        "id": 143,
+        "description": "Issue de L'Agriculture Biologique"
+      },
+    ],
+    "origin": {
+      "name": "United States of America",
+      "assetPath": "assets/origin/USA.png",
+      "id": 433,
+      "city": "NewYork"
+    }
+  },
 ];

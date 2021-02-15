@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alergo/components/title_bar.dart';
 import 'package:alergo/core/router.dart';
 import 'package:alergo/models/product_model.dart';
@@ -14,46 +16,53 @@ class SimilarProductsSection extends StatelessWidget {
   static List<ProductModel> allProducts = ProductModel.fromMock();
 
   List<ProductModel> getSimilarProducts() {
-    switch (this.product.name) {
-      case "Coca Cola":
-        return allProducts
-            .where((product) => product.name == "Coca Cola Zéro")
-            .toList();
-        break;
-      case "Coca Cola Zéro":
-        return allProducts
-            .where((product) => product.name == "Coca Cola")
-            .toList();
-        break;
-      default:
-        return new List<ProductModel>();
+    const COLA_NAME = "cola";
+    if (this.product.name.toLowerCase().contains(COLA_NAME)) {
+      return allProducts
+          .where((product) => (product.name.toLowerCase().contains(COLA_NAME) &&
+              product.id != this.product.id))
+          .toList();
+    } else {
+      return new List<ProductModel>();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    log(allProducts.toString());
     List<ProductModel> similarProducts = this.getSimilarProducts();
     if (similarProducts.isNotEmpty) {
-      return Wrap(
-        children: [
-          TitleBar(title: 'Bonne nouvelle !'),
-          Text(
-              "Nous avons trouvé un ou plusieurs articles similaires respectant votre profil !"),
-          ElevatedButton.icon(
-            label: Text("Voir les articles similaires"),
-            icon: Icon(
-              Icons.filter_none,
+      return Container(
+        margin: EdgeInsets.only(bottom: 10),
+        child: Wrap(
+          children: [
+            TitleBar(title: 'Produits similaires'),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 5, 20, 15),
+              child: Text(
+                  "Nous avons trouvé un ou plusieurs articles similaires respectant votre profil !"),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        SimilarProductPage(similarProducts: similarProducts)),
-              );
-            },
-          ),
-        ],
+            Center(
+              child: ElevatedButton.icon(
+                label: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text("Voir les articles similaires"),
+                ),
+                icon: Icon(
+                  Icons.filter_none,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SimilarProductPage(
+                            similarProducts: similarProducts)),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       );
     } else {
       return Container();
