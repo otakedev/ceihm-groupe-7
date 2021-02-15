@@ -121,3 +121,4 @@ const INGREDIENT_POTATOES_MOCK = {
   "assetPath": "assets/ingredients/potatoes.jpg",
   "id": 20,
 };
+  
