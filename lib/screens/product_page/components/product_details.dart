@@ -67,8 +67,13 @@ class ProductDetails extends StatelessWidget {
                 forEachCheckValidity: forEachCheckValidity,
               ),
               SimilarProductsSection(product: product),
-              TitleBar(title: 'Label${product.labels.length > 0 ? 's' : ''}'),
-              ProductLabels(labels: product.labels),
+              product.labels.length != 0
+                  ? TitleBar(
+                      title: 'Label${product.labels.length > 0 ? 's' : ''}')
+                  : const SizedBox.shrink(),
+              product.labels.length != 0
+                  ? ProductLabels(labels: product.labels)
+                  : const SizedBox.shrink(),
               TitleBar(title: 'Provenance'),
               ProductOrigin(product: product),
             ],

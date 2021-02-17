@@ -67,7 +67,7 @@ const INGREDIENT_PALM_OIL_MOCK = {
   "id": 9,
 };
 const INGREDIENT_HAZELNUT_MOCK = {
-  "name": "Noisette",
+  "name": "Noisettes",
   "assetPath": "assets/ingredients/hazelnut.jpeg",
   "id": 10,
 };
@@ -117,7 +117,7 @@ const INGREDIENT_PASTA_MOCK = {
   "id": 19,
 };
 const INGREDIENT_POTATOES_MOCK = {
-  "name": "Pomme de terre",
+  "name": "Pommes de terre",
   "assetPath": "assets/ingredients/potatoes.jpg",
   "id": 20,
 };

@@ -35,7 +35,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
     ],
     "origin": {
@@ -52,13 +52,13 @@ const PRODUCTS_MOCK = [
     "urlImage": "assets/products/coca.png",
     "ingredients": [
       {
-        "quantity": "80g",
+        "quantity": "10%",
         "name": "Sucre",
         "assetPath": "assets/diets/vegan.jpg",
         "id": 1,
       },
       {
-        "quantity": "4ml",
+        "quantity": "5%",
         "name": "Acide citrique",
         "assetPath": "assets/diets/vegan.jpg",
         "id": 2,
@@ -75,7 +75,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
     ],
     "origin": {
@@ -117,7 +117,7 @@ const PRODUCTS_MOCK = [
       },
       {
         "quantity": "15%",
-        "name": "Noisette",
+        "name": "Noisettes",
         "assetPath": "assets/diets/vegan.jpg",
         "id": 10,
       },
@@ -127,7 +127,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
     ],
     "origin": {
@@ -162,7 +162,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
     ],
     "origin": {
@@ -202,7 +202,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
     ],
     "origin": {
@@ -238,19 +238,12 @@ const PRODUCTS_MOCK = [
       },
       {
         "quantity": "20%",
-        "name": "Pomme de terre",
+        "name": "Pommes de terre",
         "assetPath": "assets/ingredients/potatoes.jpg",
         "id": 20,
       },
     ],
-    "labels": [
-      {
-        "name": "Agriculture Biologique",
-        "assetPath": "assets/labels/AB.png",
-        "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
-      },
-    ],
+    "labels": [],
     "origin": {
       "name": "Nice",
       "assetPath": "assets/origin/NICE.jpeg",
@@ -288,7 +281,7 @@ const PRODUCTS_MOCK = [
         "name": "Agriculture Biologique",
         "assetPath": "assets/labels/AB.png",
         "id": 143,
-        "description": "Issue de L'Agriculture Biologique"
+        "description": "Provient de L'Agriculture Biologique"
       },
       {
         "name": "Made in France",
