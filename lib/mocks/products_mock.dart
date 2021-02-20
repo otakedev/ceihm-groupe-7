@@ -2,31 +2,37 @@ const PRODUCTS_MOCK = [
   {
     "id": "1",
     "name": "Cookie Granola",
-    "description": "Une Description",
+    "description": "Fantastique cookie aux pépites de chocolat",
     "urlImage": "assets/products/cookie.png",
     "ingredients": [
       {
         "quantity": "100g",
         "name": "Farine",
-        "assetPath": "assets/diets/vegan.jpg",
+        "assetPath": "assets/ingredients/flour.jpeg",
         "id": 4,
       },
       {
         "quantity": "20g",
         "name": "Beurre",
-        "assetPath": "assets/diets/vegan.jpg",
+        "assetPath": "assets/ingredients/butter.jpg",
         "id": 5,
+      },
+      {
+        "quantity": "20g",
+        "name": "Sucre",
+        "assetPath": "assets/ingredients/sugar.jpeg",
+        "id": 1,
       },
       {
         "quantity": "2",
         "name": "Oeuf",
-        "assetPath": "assets/diets/vegan.jpg",
+        "assetPath": "assets/ingredients/egg.jpeg",
         "id": 6,
       },
       {
         "quantity": "50g",
         "name": "Chocolat au lait",
-        "assetPath": "assets/diets/vegan.jpg",
+        "assetPath": "assets/ingredients/milk-choco.jpg",
         "id": 7,
       },
     ],
@@ -48,7 +54,7 @@ const PRODUCTS_MOCK = [
   {
     "id": "2",
     "name": "Coca Cola",
-    "description": "Une Description",
+    "description": "Boisson fraîche",
     "urlImage": "assets/products/coca.png",
     "ingredients": [
       {
@@ -88,7 +94,7 @@ const PRODUCTS_MOCK = [
   {
     "id": "3",
     "name": "Kinder Bueno",
-    "description": "Une Description",
+    "description": "Pour la pause goûter",
     "urlImage": "assets/products/bueno.png",
     "ingredients": [
       {
@@ -140,7 +146,7 @@ const PRODUCTS_MOCK = [
   {
     "id": "4",
     "name": "Coca Cola Zéro",
-    "description": "Une Description",
+    "description": "Sans sucre",
     "urlImage": "assets/products/coca-zero.png",
     "ingredients": [
       {
@@ -174,7 +180,7 @@ const PRODUCTS_MOCK = [
   {
     "id": "5",
     "name": "Coca Cola Light",
-    "description": "Une Description",
+    "description": "Avec moins de sucre",
     "urlImage": "assets/products/coca-light.png",
     "ingredients": [
       {
