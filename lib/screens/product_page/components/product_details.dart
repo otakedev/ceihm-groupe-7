@@ -49,10 +49,7 @@ class ProductDetails extends StatelessWidget {
               padding: EdgeInsets.all(50),
               child: Hero(
                 tag: product.id,
-                child: Image.network(
-                  product.urlImage,
-                  fit: BoxFit.contain,
-                ),
+                child: Image.asset(product.urlImage, fit: BoxFit.contain),
               ),
             ),
           ),
@@ -70,8 +67,13 @@ class ProductDetails extends StatelessWidget {
                 forEachCheckValidity: forEachCheckValidity,
               ),
               SimilarProductsSection(product: product),
-              TitleBar(title: 'Label${product.labels.length > 0 ? 's' : ''}'),
-              ProductLabels(labels: product.labels),
+              product.labels.length != 0
+                  ? TitleBar(
+                      title: 'Label${product.labels.length > 0 ? 's' : ''}')
+                  : const SizedBox.shrink(),
+              product.labels.length != 0
+                  ? ProductLabels(labels: product.labels)
+                  : const SizedBox.shrink(),
               TitleBar(title: 'Provenance'),
               ProductOrigin(product: product),
             ],

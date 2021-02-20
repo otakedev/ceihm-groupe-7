@@ -20,12 +20,11 @@ class ProductModel {
     @required this.description,
     @required this.urlImage,
     @required this.ingredients,
-    @required this.labels,
+    this.labels,
     @required this.origin,
   })  : assert(name != null),
         assert(id != null),
         assert(ingredients != null),
-        assert(labels != null),
         assert(description != null);
 
   ProductModel.fromMap(Map<String, dynamic> json)
@@ -36,9 +35,11 @@ class ProductModel {
         ingredients = json['ingredients']
             .map<IngredientModel>((model) => IngredientModel.fromMap(model))
             .toList(),
-        labels = json['labels']
-            .map<LabelModel>((model) => LabelModel.fromMap(model))
-            .toList(),
+        labels = json['labels'].length != 0
+            ? json['labels']
+                .map<LabelModel>((model) => LabelModel.fromMap(model))
+                .toList()
+            : [],
         origin = OriginModel.fromMap(json['origin']);
 
   Map<String, dynamic> toMap() => {

@@ -13,6 +13,12 @@ const INGREDIENTS_MOCK = [
   INGREDIENT_TOFU_MOCK,
   INGREDIENT_BEEF_MOCK,
   INGREDIENT_CHICKEN_MOCK,
+  INGREDIENT_PEANUTS_MOCK,
+  INGREDIENT_MILK_MOCK,
+  INGREDIENT_CARROTS_MOCK,
+  INGREDIENT_TOMATOES_MOCK,
+  INGREDIENT_PASTA_MOCK,
+  INGREDIENT_POTATOES_MOCK
 ];
 
 const INGREDIENT_SUGAR_MOCK = {
@@ -61,7 +67,7 @@ const INGREDIENT_PALM_OIL_MOCK = {
   "id": 9,
 };
 const INGREDIENT_HAZELNUT_MOCK = {
-  "name": "Noisette",
+  "name": "Noisettes",
   "assetPath": "assets/ingredients/hazelnut.jpeg",
   "id": 10,
 };
@@ -84,4 +90,34 @@ const INGREDIENT_CHICKEN_MOCK = {
   "name": "Poulet",
   "assetPath": "assets/ingredients/chicken.jpg",
   "id": 14,
+};
+const INGREDIENT_PEANUTS_MOCK = {
+  "name": "Cacahuètes",
+  "assetPath": "assets/ingredients/peanuts.jpg",
+  "id": 15,
+};
+const INGREDIENT_MILK_MOCK = {
+  "name": "Lait",
+  "assetPath": "assets/ingredients/milk.jpg",
+  "id": 16,
+};
+const INGREDIENT_CARROTS_MOCK = {
+  "name": "Carottes",
+  "assetPath": "assets/ingredients/carrots.jpg",
+  "id": 17,
+};
+const INGREDIENT_TOMATOES_MOCK = {
+  "name": "Tomates",
+  "assetPath": "assets/ingredients/tomatoes.jpg",
+  "id": 18,
+};
+const INGREDIENT_PASTA_MOCK = {
+  "name": "Pâtes",
+  "assetPath": "assets/ingredients/pasta.jpg",
+  "id": 19,
+};
+const INGREDIENT_POTATOES_MOCK = {
+  "name": "Pommes de terre",
+  "assetPath": "assets/ingredients/potatoes.jpg",
+  "id": 20,
 };
