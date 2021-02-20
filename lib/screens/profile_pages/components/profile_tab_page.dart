@@ -1,6 +1,7 @@
 import 'package:alergo/models/profile_item_model.dart';
 import 'package:alergo/screens/profile_pages/components/profile_item_block.dart';
 import 'package:alergo/providers/profile_selector_provider.dart';
+import 'package:flappy_search_bar/scaled_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
@@ -38,9 +39,9 @@ class ProfileTabPage extends StatelessWidget {
         child: Text("Aucun résultat"),
       ),
       hintText: "Rechercher",
+      indexedScaledTileBuilder: (int index) => ScaledTile.count(1, 1),
       searchBarPadding: EdgeInsets.only(left: 10, right: 10, bottom: 0),
       headerPadding: EdgeInsets.symmetric(horizontal: 10),
-      listPadding: EdgeInsets.symmetric(horizontal: 10),
       cancellationWidget: Icon(Icons.cancel_rounded),
       minimumChars: 3,
       onSearch: _searchItem,
@@ -54,23 +55,20 @@ class ProfileTabPage extends StatelessWidget {
       crossAxisSpacing: responsiveWidth,
       mainAxisSpacing: responsiveHeight,
       shrinkWrap: true,
-      placeHolder: Padding(
-        padding: EdgeInsets.only(bottom: bottomPadding),
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: responsiveWidth,
-            mainAxisSpacing: responsiveHeight,
-          ),
-          shrinkWrap: true,
-          itemCount: items.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ProfileItemBlock(
-              item: items[index],
-              type: profileType,
-            );
-          },
+      placeHolder: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: responsiveWidth,
+          mainAxisSpacing: responsiveHeight,
         ),
+        shrinkWrap: true,
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ProfileItemBlock(
+            item: items[index],
+            type: profileType,
+          );
+        },
       ),
     );
 
@@ -90,7 +88,12 @@ class ProfileTabPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-            Flexible(child: searchBar)
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomPadding),
+                child: searchBar,
+              ),
+            ),
           ],
         ),
       ),

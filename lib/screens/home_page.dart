@@ -119,7 +119,8 @@ void _navigateAndDisplayResult(BuildContext context, String route) async {
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text('$result', style: bodyText2Black(context)),
+            Text('${result ?? 'Profil sauvegardé'}',
+                style: bodyText2Black(context)),
             Icon(Icons.info_outline, color: colorPrimary),
           ],
         ),
