@@ -141,8 +141,7 @@ const PRODUCTS_MOCK = [
     "id": "4",
     "name": "Coca Cola Zéro",
     "description": "Une Description",
-    "urlImage":
-        "https://cdn.metro-group.com/fr/fr_pim_397419001002_01.png?w=400&h=400&mode=pad",
+    "urlImage": "assets/products/coca-zero.png",
     "ingredients": [
       {
         "quantity": "4ml",
@@ -176,7 +175,7 @@ const PRODUCTS_MOCK = [
     "id": "5",
     "name": "Coca Cola Light",
     "description": "Une Description",
-    "urlImage": "https://pngimg.com/uploads/cocacola/coca_cola_PNG8912.png",
+    "urlImage": "assets/products/coca-light.png",
     "ingredients": [
       {
         "quantity": "10g",
