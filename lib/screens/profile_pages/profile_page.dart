@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
     'Choix du régime',
     'Je ne peux pas',
     'Je n\'aime pas',
-    'Terminer'
+    'Suivant'
   ];
 
   final _profileType = [
@@ -98,10 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
               drawerOpenedText: "Fermer",
               actionPosition: ActionPosition.bottom,
               rightAction: _currentPage < _profileLabels.length - 1
-                  ? MenuAction(
-                      onAction: () => goToNextPage(),
-                      text: _profileLabels[_currentPage + 1],
-                    )
+                  ? MenuAction(onAction: () => goToNextPage(), text: "Suivant")
                   : null,
               leftAction: _currentPage >= 1
                   ? MenuAction(
