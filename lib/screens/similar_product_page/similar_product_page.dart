@@ -18,7 +18,7 @@ class SimilarProductPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Les produits similaires",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
         ),
       ),
       body: SafeArea(
